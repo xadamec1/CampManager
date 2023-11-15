@@ -11,7 +11,9 @@ datasource db {
 }
 
 model Camp {
-  id                Int      @id @default(autoincrement())
+  id                Int            @id @default(autoincrement())
+  address           Address        @relation(fields: [addressID], references: [id])
+  addressID         Int
   name              String
   organiser         String
   notes             String
@@ -22,19 +24,24 @@ model Camp {
   isRegistrationOpen Boolean
   startDate         DateTime
   endDate           DateTime
+  registration      Registration[]
 }
 
 model Registration {
-  id        Int     @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
+  camp      Camp      @relation(fields: [campId], references: [id])
   campId    Int
+  child     Children  @relation(fields: [childId], references: [id])
   childId   Int
+  parent    Parent    @relation(fields: [parentId], references: [id])
   parentId  Int
   accepted  Boolean
   paid      Boolean
 }
 
 model Children {
-  id                Int     @id @default(autoincrement())
+  id                Int            @id @default(autoincrement())
+  address           Address        @relation(fields: [adressId], references: [id])
   adressId          Int
   firstName         String
   lastName          String
@@ -42,12 +49,25 @@ model Children {
   diet              String
   birthDate         String
   insuranceCompany  Int
+  registration      Registration[]
 }
 
 model Address {
-  id            Int     @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
+  camps         Camp[]
+  children      Children[]
   streetNumber  String
   city          String
   zipCode       String
   notes         String
+}
+
+model Parent {
+  id              Int           @id @default(autoincrement())
+  registrationId Int
+  registration    Registration[]
+  firstName       String
+  lastName        String
+  phoneNumber     String
+  email           String
 }
