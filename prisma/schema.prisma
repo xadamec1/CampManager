@@ -9,3 +9,45 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Camp {
+  id                Int      @id @default(autoincrement())
+  name              String
+  organiser         String
+  notes             String
+  neededEquipment   String
+  description       String
+  capacity          Int
+  price             Int
+  isRegistrationOpen Boolean
+  startDate         DateTime
+  endDate           DateTime
+}
+
+model Registration {
+  id        Int     @id @default(autoincrement())
+  campId    Int
+  childId   Int
+  parentId  Int
+  accepted  Boolean
+  paid      Boolean
+}
+
+model Children {
+  id                Int     @id @default(autoincrement())
+  adressId          Int
+  firstName         String
+  lastName          String
+  allergies         String
+  diet              String
+  birthDate         String
+  insuranceCompany  Int
+}
+
+model Address {
+  id            Int     @id @default(autoincrement())
+  streetNumber  String
+  city          String
+  zipCode       String
+  notes         String
+}
