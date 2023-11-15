@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Camp {
+  id                Int            @id @default(autoincrement())
+  address           Address        @relation(fields: [addressID], references: [id])
+  addressID         Int
+  name              String
+  organiser         String
+  notes             String
+  neededEquipment   String
+  description       String
+  capacity          Int
+  price             Int
+  isRegistrationOpen Boolean
+  startDate         DateTime
+  endDate           DateTime
+  registration      Registration[]
+}
+
+model Registration {
+  id        Int       @id @default(autoincrement())
+  camp      Camp      @relation(fields: [campId], references: [id])
+  campId    Int
+  child     Children  @relation(fields: [childId], references: [id])
+  childId   Int
+  parent    Parent    @relation(fields: [parentId], references: [id])
+  parentId  Int
+  accepted  Boolean
+  paid      Boolean
+}
+
+model Children {
+  id                Int            @id @default(autoincrement())
+  address           Address        @relation(fields: [adressId], references: [id])
+  adressId          Int
+  firstName         String
+  lastName          String
+  allergies         String
+  diet              String
+  birthDate         String
+  insuranceCompany  Int
+  registration      Registration[]
+}
+
+model Address {
+  id            Int        @id @default(autoincrement())
+  camps         Camp[]
+  children      Children[]
+  streetNumber  String
+  city          String
+  zipCode       String
+  notes         String
+}
+
+model Parent {
+  id              Int           @id @default(autoincrement())
+  registrationId Int
+  registration    Registration[]
+  firstName       String
+  lastName        String
+  phoneNumber     String
+  email           String
+}
