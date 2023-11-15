@@ -12,18 +12,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
 	<html lang="en">
-		<body className={inter.className}>
-			<nav className="bg-slate-200">
-				<ul className="container mx-auto flex gap-x-6 px-10 py-4">
-					<li>
-						<Link href="/camp">Future Camps</Link>
-					</li>
-					<li>
-						<Link href="/about">Camp news</Link>
-					</li>
-				</ul>
-			</nav>
-
+		<body className={`${inter.className}`}>
 			<main className="container mx-auto px-10">{children}</main>
 		</body>
 	</html>

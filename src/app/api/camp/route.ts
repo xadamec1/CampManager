@@ -4,8 +4,8 @@ export const GET = async (_req: Request) => {
 	try {
 		// List all Camps
 		const camps = await db.camp.findMany();
-		Response.json(camps);
+		return Response.json(camps);
 	} catch (error) {
-		Response.json({ error: 'Internal Server Error' });
+		return Response.json({ error: 'Internal Server Error' });
 	}
 };

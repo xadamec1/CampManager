@@ -24,10 +24,10 @@ const CampCard: React.FC<CardProps> = ({ name, description, imagePath }) => (
 		</div>
 		<div className="px-6 py-4">
 			<Link
-				href={`/details/${name}`}
+				href={`/camp/${name}`}
 				className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
 			>
-				Details
+				Go to camp
 			</Link>
 		</div>
 	</div>

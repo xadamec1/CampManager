@@ -6,12 +6,12 @@ const Home = () => {
 	// Sample data for available camps
 	const availableCamps = [
 		{
-			name: 'Camp 1',
+			name: 'Camp1',
 			description: 'Description for Camp 1',
 			imagePath: '/camping_fun_h.webp'
 		},
 		{
-			name: 'Camp 2',
+			name: 'Camp2',
 			description: 'Description for Camp 1',
 			imagePath: '/camping_fun_h.webp'
 		}
