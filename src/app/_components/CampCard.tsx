@@ -10,7 +10,7 @@ type CardProps = {
 };
 
 const CampCard: React.FC<CardProps> = ({ name, description, imagePath }) => (
-	<div className="max-w-sm overflow-hidden rounded p-8 shadow-lg">
+	<div className="max-w-sm overflow-hidden rounded bg-default-card p-8 shadow-lg">
 		<Image
 			className=" w-full"
 			width={200}
@@ -25,7 +25,7 @@ const CampCard: React.FC<CardProps> = ({ name, description, imagePath }) => (
 		<div className="px-6 py-4">
 			<Link
 				href={`/camp/${name}`}
-				className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+				className="rounded bg-default-button px-4 py-2 font-bold text-white hover:bg-default-text"
 			>
 				Go to camp
 			</Link>

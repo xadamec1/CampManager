@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CampCard from './_components/CampCard'; // Adjust the path based on your project structure
 
 const Home = () => {
@@ -20,10 +19,12 @@ const Home = () => {
 
 	return (
 		<div className="container mx-auto mt-8">
-			<h1 className="mb-4 text-3xl font-bold">Camp with us</h1>
-			<h2 className="mb-4 text-2xl font-semibold">Our available camps</h2>
+			<h1 className="mb-4 text-center text-3xl font-bold">Camp with us</h1>
+			<h2 className="mb-4 text-center text-2xl font-semibold">
+				Our available camps
+			</h2>
 
-			<div className="flex flex-wrap ">
+			<div className="flex flex-wrap justify-between">
 				{availableCamps.map((camp, index) => (
 					<CampCard
 						key={index}

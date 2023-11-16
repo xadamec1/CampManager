@@ -9,22 +9,22 @@ const CampLayout = ({
 	campName: string;
 }) => (
 	<div>
-		<nav className="bg-slate-200">
+		<nav className="bg-default-card">
 			<ul className="container mx-auto flex gap-x-6 px-10 py-4">
 				<li>
 					<Link href="/">Other available camps</Link>
 				</li>
 				<li>
-					<Link href={`/${campName}/about`}>About camp</Link>
+					<Link href={`/camp/${campName}/about`}>About camp</Link>
 				</li>
 				<li>
-					<Link href={`/${campName}/register`}>Register</Link>
+					<Link href={`/camp/${campName}/register`}>Register</Link>
 				</li>
 				<li>
-					<Link href={`/${campName}/news`}>Camp news</Link>
+					<Link href={`/camp/${campName}/news`}>Camp news</Link>
 				</li>
 				<li>
-					<Link href={`/${campName}/contact`}>Contacts</Link>
+					<Link href={`/camp/${campName}/contact`}>Contacts</Link>
 				</li>
 			</ul>
 		</nav>
