@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../globals.css';
-import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +11,9 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
 	<html lang="en">
-		<body className={`${inter.className}`}>
+		<body
+			className={`${inter.className} bg-default-background text-default-text`}
+		>
 			<main className="container mx-auto px-10">{children}</main>
 		</body>
 	</html>

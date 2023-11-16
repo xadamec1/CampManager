@@ -12,18 +12,18 @@ const Home = () => {
 		},
 		{
 			name: 'Camp2',
-			description: 'Description for Camp 1',
+			description: 'Description for Camp 2',
 			imagePath: '/camping_fun_h.webp'
 		}
 		// Add more camp data as needed
 	];
 
 	return (
-		<div>
-			<h1>Camp with us</h1>
-			<h2>Our available camps</h2>
+		<div className="container mx-auto mt-8">
+			<h1 className="mb-4 text-3xl font-bold">Camp with us</h1>
+			<h2 className="mb-4 text-2xl font-semibold">Our available camps</h2>
 
-			<div className="flex flex-wrap">
+			<div className="flex flex-wrap ">
 				{availableCamps.map((camp, index) => (
 					<CampCard
 						key={index}
