@@ -19,9 +19,11 @@ model Camp {
   notes             String
   neededEquipment   String
   description       String
+  imagePath         String
   capacity          Int
   price             Int
   isRegistrationOpen Boolean
+  isPublic          Boolean
   startDate         DateTime
   endDate           DateTime
   registration      Registration[]
@@ -64,7 +66,6 @@ model Address {
 
 model Parent {
   id              Int           @id @default(autoincrement())
-  registrationId Int
   registration    Registration[]
   firstName       String
   lastName        String
