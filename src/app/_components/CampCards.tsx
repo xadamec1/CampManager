@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 
+import { db } from '@/server/db';
+
 type CardProps = {
 	name: string;
 	description: string;
@@ -33,4 +35,22 @@ const CampCard: React.FC<CardProps> = ({ name, description, imagePath }) => (
 	</div>
 );
 
-export default CampCard;
+const CampCards = async () => {
+	const publicCamps = await db.camp.findMany({
+		where: { isPublic: true }
+	});
+	return (
+		<>
+			{publicCamps.map(camp => (
+				<CampCard
+					key={camp.id} // Adjust the key based on your camp object structure
+					name={camp.name}
+					description={camp.description}
+					imagePath={camp.imagePath}
+				/>
+			))}
+		</>
+	);
+};
+
+export default CampCards;
