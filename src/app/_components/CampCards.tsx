@@ -34,7 +34,7 @@ const CampCard: React.FC<CardProps> = ({
 		/>
 		<div className="px-6 py-4">
 			<div className="mb-2 text-xl font-bold">{name}</div>
-			<p className="text-base">{description}</p>
+			<p className="text-base">{truncateText(description)}</p>
 			<div className="mt-4">
 				<p className="">
 					<strong>Price:</strong> ${price}
@@ -57,6 +57,12 @@ const CampCard: React.FC<CardProps> = ({
 		</div>
 	</div>
 );
+const truncateText = (text: string, limit = 100) => {
+	if (text.length > limit) {
+		return `${text.substring(0, limit)}...`;
+	}
+	return text;
+};
 
 const CampCards = async () => {
 	const publicCamps = await db.camp.findMany({
