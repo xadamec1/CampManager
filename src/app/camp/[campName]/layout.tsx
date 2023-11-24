@@ -1,11 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 
-const NavbarItem = ({ path, name }: { path: string; name: string }) => (
-	<li className="rounded transition duration-300 hover:bg-default-button">
-		<Link href={path}>{name}</Link>
-	</li>
-);
+import NavbarItem from '@/app/_components/NavbarItem';
 
 const CampLayout = ({
 	children,
