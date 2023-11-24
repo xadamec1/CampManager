@@ -9,12 +9,24 @@ type CardProps = {
 	name: string;
 	description: string;
 	imagePath: string;
+	price: number;
+	availablePlaces: number;
+	beginDate: string;
+	endDate: string;
 };
 
-const CampCard: React.FC<CardProps> = ({ name, description, imagePath }) => (
+const CampCard: React.FC<CardProps> = ({
+	name,
+	description,
+	imagePath,
+	price,
+	beginDate,
+	endDate,
+	availablePlaces
+}) => (
 	<div className="max-w-sm overflow-hidden rounded bg-default-card p-8 shadow-lg">
 		<Image
-			className=" w-full"
+			className="w-full"
 			width={200}
 			height={200}
 			src={imagePath}
@@ -22,7 +34,18 @@ const CampCard: React.FC<CardProps> = ({ name, description, imagePath }) => (
 		/>
 		<div className="px-6 py-4">
 			<div className="mb-2 text-xl font-bold">{name}</div>
-			<p className="text-base text-gray-700">{description}</p>
+			<p className="text-base">{description}</p>
+			<div className="mt-4">
+				<p className="">
+					<strong>Price:</strong> ${price}
+				</p>
+				<p className="">
+					<strong>Date:</strong> {beginDate} - {endDate}
+				</p>
+				<p className="">
+					<strong>Available Places:</strong> {availablePlaces}
+				</p>
+			</div>
 		</div>
 		<div className="px-6 py-4">
 			<Link
@@ -43,10 +66,14 @@ const CampCards = async () => {
 		<>
 			{publicCamps.map(camp => (
 				<CampCard
-					key={camp.id} // Adjust the key based on your camp object structure
+					key={camp.id}
 					name={camp.name}
 					description={camp.description}
 					imagePath={camp.imagePath}
+					price={camp.price}
+					beginDate={camp.startDate.toLocaleDateString()}
+					endDate={camp.endDate.toLocaleDateString()}
+					availablePlaces={camp.capacity}
 				/>
 			))}
 		</>

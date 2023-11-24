@@ -60,7 +60,7 @@ const main = async () => {
 	});
 
 	// Seed Registration
-	const reg = await prisma.registration.create({
+	await prisma.registration.create({
 		data: {
 			camp: {
 				connect: { id: camp1.id }
