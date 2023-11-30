@@ -13,6 +13,7 @@ type CardProps = {
 	availablePlaces: number;
 	beginDate: string;
 	endDate: string;
+	campId: number;
 };
 
 const CampCard: React.FC<CardProps> = ({
@@ -22,7 +23,8 @@ const CampCard: React.FC<CardProps> = ({
 	price,
 	beginDate,
 	endDate,
-	availablePlaces
+	availablePlaces,
+	campId
 }) => (
 	<div className="max-w-sm overflow-hidden rounded bg-default-card p-8 shadow-lg">
 		<Image
@@ -49,7 +51,7 @@ const CampCard: React.FC<CardProps> = ({
 		</div>
 		<div className="px-6 py-4">
 			<Link
-				href={`/camp/${name}`}
+				href={`/camp/${campId}`}
 				className="rounded bg-darker-green px-4 py-2 font-bold text-white hover:bg-default-text"
 			>
 				Go to camp
@@ -80,6 +82,7 @@ const CampCards = async () => {
 					beginDate={camp.startDate.toLocaleDateString()}
 					endDate={camp.endDate.toLocaleDateString()}
 					availablePlaces={camp.capacity}
+					campId={camp.id}
 				/>
 			))}
 		</>
