@@ -2,12 +2,12 @@ import React from 'react';
 
 type CampProps = {
 	params: {
-		campName: string;
+		campId: number;
 	};
 };
 
 const CampPage = ({ params }: CampProps) => (
-	<p>Camp is nice, camp is fine {params.campName}</p>
+	<p>Camp is nice, camp is fine {params.campId}</p>
 );
 
 export default CampPage;
