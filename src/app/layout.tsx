@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import '../globals.css';
+import { Providers } from './_components/providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +16,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 		<body
 			className={`${inter.className} bg-default-background text-default-text`}
 		>
-			<main className="container mx-auto px-10">{children}</main>
+			<main className="container mx-auto px-10">
+				<Providers>{children}</Providers>
+			</main>
 		</body>
 	</html>
 );

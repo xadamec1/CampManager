@@ -11,64 +11,68 @@ datasource db {
 }
 
 model Camp {
-  id                Int            @id @default(autoincrement())
-  address           Address        @relation(fields: [addressID], references: [id])
-  addressID         Int
-  name              String
-  organiser         String
-  notes             String
-  neededEquipment   String
-  description       String
-  imagePath         String
-  capacity          Int
-  price             Int
+  id                 Int            @id @default(autoincrement())
+  address            Address        @relation(fields: [addressID], references: [id])
+  addressID          Int
+  name               String
+  organiser          String
+  notes              String
+  neededEquipment    String
+  description        String
+  imagePath          String
+  capacity           Int
+  price              Int
   isRegistrationOpen Boolean
-  isPublic          Boolean
-  startDate         DateTime
-  endDate           DateTime
-  registration      Registration[]
+  isPublic           Boolean
+  startDate          DateTime
+  endDate            DateTime
+  registration       Registration[]
 }
 
 model Registration {
-  id        Int       @id @default(autoincrement())
-  camp      Camp      @relation(fields: [campId], references: [id])
-  campId    Int
-  child     Children  @relation(fields: [childId], references: [id])
-  childId   Int
-  parent    Parent    @relation(fields: [parentId], references: [id])
-  parentId  Int
-  accepted  Boolean
-  paid      Boolean
+  id       Int      @id @default(autoincrement())
+  camp     Camp     @relation(fields: [campId], references: [id])
+  campId   Int
+  child    Children @relation(fields: [childId], references: [id])
+  childId  Int
+  parent   Parent   @relation(fields: [parentId], references: [id])
+  parentId Int
+  accepted Boolean
+  paid     Boolean
 }
 
 model Children {
-  id                Int            @id @default(autoincrement())
-  address           Address        @relation(fields: [adressId], references: [id])
-  adressId          Int
-  firstName         String
-  lastName          String
-  allergies         String
-  diet              String
-  birthDate         String
-  insuranceCompany  Int
-  registration      Registration[]
+  id               Int            @id @default(autoincrement())
+  address          Address        @relation(fields: [adressId], references: [id])
+  adressId         Int
+  firstName        String
+  lastName         String
+  allergies        String
+  diet             String
+  birthDate        String
+  insuranceCompany Int
+  registration     Registration[]
+
+  @@unique([firstName, lastName, birthDate])
 }
 
 model Address {
-  id            Int        @id @default(autoincrement())
-  camps         Camp[]
-  children      Children[]
-  streetNumber  String
-  city          String
-  zipCode       String
-  notes         String
+  id           Int        @id @default(autoincrement())
+  camps        Camp[]
+  children     Children[]
+  streetNumber String
+  city         String
+  zipCode      String
+  notes        String
 }
 
 model Parent {
-  id              Int           @id @default(autoincrement())
-  registration    Registration[]
-  firstName       String
-  lastName        String
-  phoneNumber     String
-  email           String
+  id           Int            @id @default(autoincrement())
+  registration Registration[]
+  firstName    String
+  lastName     String
+  phoneNumber  String
+  email        String
+
+  @@unique([email])
 }
