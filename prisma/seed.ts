@@ -75,7 +75,14 @@ const main = async () => {
 			paid: true
 		}
 	});
-
+	await prisma.feedPost.create({
+		data: {
+			createdAt: 'new Date()',
+			title: 'Welcome to the camp!',
+			content: 'This is the first post of the camp.',
+			imagePath: '/camping_fun_h.webp'
+		}
+	});
 	console.log('Seed data inserted successfully');
 };
 

@@ -78,4 +78,5 @@ model FeedPost {
   title           String
   content         String
   imagePath       String
+  createdAt       String
 }
