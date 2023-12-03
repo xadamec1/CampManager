@@ -72,3 +72,10 @@ model Parent {
   phoneNumber     String
   email           String
 }
+
+model FeedPost {
+  id              Int           @id @default(autoincrement())
+  title           String
+  content         String
+  imagePath       String
+}
