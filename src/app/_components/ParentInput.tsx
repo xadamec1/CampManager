@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { type CampRegistration } from '../types/camp';
 
 export const ParentInput = () => {
-	const { register } = useFormContext<CampRegistration>();
+	const { register, formState } = useFormContext<CampRegistration>();
 
 	const parentNameInput = (
 		<label className="mb-2 block p-2">
@@ -12,6 +12,9 @@ export const ParentInput = () => {
 				{...register('parentName')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.parentName?.message && (
+				<p className="text-red-500">{formState.errors.parentName?.message}</p>
+			)}
 		</label>
 	);
 
@@ -22,6 +25,11 @@ export const ParentInput = () => {
 				{...register('parentSurname')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.parentSurname?.message && (
+				<p className="text-red-500">
+					{formState.errors.parentSurname?.message}
+				</p>
+			)}
 		</label>
 	);
 
@@ -33,6 +41,9 @@ export const ParentInput = () => {
 				{...register('email')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.email?.message && (
+				<p className="text-red-500">{formState.errors.email?.message}</p>
+			)}
 		</label>
 	);
 
@@ -43,6 +54,9 @@ export const ParentInput = () => {
 				{...register('phoneNumber')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.phoneNumber?.message && (
+				<p className="text-red-500">{formState.errors.phoneNumber?.message}</p>
+			)}
 		</label>
 	);
 

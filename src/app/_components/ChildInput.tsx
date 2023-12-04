@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { type CampRegistration } from '../types/camp';
 
 export const ChildInput = () => {
-	const { register } = useFormContext<CampRegistration>();
+	const { register, formState } = useFormContext<CampRegistration>();
 
 	const childNameInput = (
 		<label className="mb-2 block p-2">
@@ -14,6 +14,9 @@ export const ChildInput = () => {
 				{...register('name')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.name?.message && (
+				<p className="text-red-500">{formState.errors.name?.message}</p>
+			)}
 		</label>
 	);
 
@@ -35,6 +38,9 @@ export const ChildInput = () => {
 				{...register('surname')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.surname?.message && (
+				<p className="text-red-500">{formState.errors.surname?.message}</p>
+			)}
 		</label>
 	);
 
@@ -46,6 +52,9 @@ export const ChildInput = () => {
 				{...register('dateOfBirth', { valueAsDate: true })}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.dateOfBirth?.message && (
+				<p className="text-red-500">{formState.errors.dateOfBirth?.message}</p>
+			)}
 		</label>
 	);
 
@@ -62,6 +71,11 @@ export const ChildInput = () => {
 					</option>
 				))}
 			</select>
+			{formState.errors.insuranceCompany?.message && (
+				<p className="text-red-500">
+					{formState.errors.insuranceCompany?.message}
+				</p>
+			)}
 		</label>
 	);
 
@@ -83,6 +97,9 @@ export const ChildInput = () => {
 				{...register('street')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.street?.message && (
+				<p className="text-red-500">{formState.errors.street?.message}</p>
+			)}
 		</label>
 	);
 
@@ -93,6 +110,9 @@ export const ChildInput = () => {
 				{...register('postalCode')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.postalCode?.message && (
+				<p className="text-red-500">{formState.errors.postalCode?.message}</p>
+			)}
 		</label>
 	);
 
@@ -103,6 +123,9 @@ export const ChildInput = () => {
 				{...register('city')}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
+			{formState.errors.city?.message && (
+				<p className="text-red-500">{formState.errors.city?.message}</p>
+			)}
 		</label>
 	);
 
