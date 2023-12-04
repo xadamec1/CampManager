@@ -43,7 +43,7 @@ export const ChildInput = () => {
 			Date of Birth:
 			<input
 				type="date"
-				{...register('dateOfBirth')}
+				{...register('dateOfBirth', { valueAsDate: true })}
 				className="mt-1 w-full rounded border px-3 py-2"
 			/>
 		</label>
