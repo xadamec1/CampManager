@@ -34,17 +34,6 @@ export const CampRegisterForm: React.FC = () => {
 		mutation.mutate(data);
 	};
 
-	const insuranceCompanies = [
-		{ value: 'default', label: '-' },
-		{ value: 'vzp-111', label: 'VZP - 111' },
-		{ value: 'vozp-201', label: 'VOZP - 201' },
-		{ value: 'czpc-205', label: 'CZPC - 205' },
-		{ value: 'ozp-207', label: 'OZP - 207' },
-		{ value: 'zps-209', label: 'ZPS - 209' },
-		{ value: 'zpmv-211', label: 'ZPMV - 211' },
-		{ value: 'rbp-213', label: 'RBP - 213' }
-	];
-
 	return (
 		<form
 			onSubmit={method.handleSubmit(onSubmit)}
