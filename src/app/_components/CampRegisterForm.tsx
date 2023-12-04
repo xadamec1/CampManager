@@ -3,15 +3,20 @@ import React from 'react';
 import { useForm, type SubmitHandler, FormProvider } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { type CampRegistration } from '@/app/types/camp';
+
+import { campRegistrationSchema } from '../validators/campRegistration';
 
 import { ChildInput } from './ChildInput';
 import { HealthInput } from './HealthInput';
 import { ParentInput } from './ParentInput';
 
 export const CampRegisterForm: React.FC = () => {
-	const method = useForm<CampRegistration>();
+	const method = useForm<CampRegistration>({
+		resolver: zodResolver(campRegistrationSchema)
+	});
 
 	const mutation = useMutation({
 		mutationFn: async (campForm: CampRegistration) => {
