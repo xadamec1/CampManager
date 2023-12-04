@@ -19,7 +19,7 @@ export const childSchema = z.object({
 		.max(50, { message: commonMessages.stringMax }),
 	dateOfBirth: z.date(),
 	insuranceCompany: z.string(),
-	insuranceCardImage: z.string(), // TODO: store image not a link here
+	insuranceCardImage: z.any().optional(), // TODO: store image not a link here
 	street: z
 		.string()
 		.min(1, { message: commonMessages.stringMin })
@@ -63,7 +63,7 @@ export const parentSchema = z.object({
 
 export const campRegistrationSchema = childSchema
 	.extend({
-		campId: z.number()
+		campId: z.number().optional()
 	})
 	.and(healthStatusSchema)
 	.and(parentSchema);

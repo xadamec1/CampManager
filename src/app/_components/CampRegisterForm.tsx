@@ -2,7 +2,7 @@
 import React from 'react';
 import { useForm, type SubmitHandler, FormProvider } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { type CampRegistration } from '@/app/types/camp';
@@ -18,6 +18,8 @@ export const CampRegisterForm: React.FC = () => {
 		resolver: zodResolver(campRegistrationSchema)
 	});
 
+	const router = useRouter();
+
 	const mutation = useMutation({
 		mutationFn: async (campForm: CampRegistration) => {
 			const resp = await fetch('/api/register', {
@@ -28,6 +30,9 @@ export const CampRegisterForm: React.FC = () => {
 				body: JSON.stringify(campForm)
 			});
 			return await resp.json();
+		},
+		onSuccess: () => {
+			router.replace('/');
 		}
 	});
 
