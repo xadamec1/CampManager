@@ -87,6 +87,11 @@ export const ChildInput = () => {
 				{...register('insuranceCardImage')}
 				className="mt-1 w-full rounded border bg-white px-3 py-2"
 			/>
+			{formState.errors.insuranceCardImage?.message && (
+				<p className="text-red-500">
+					{formState.errors.insuranceCardImage?.message}
+				</p>
+			)}
 		</label>
 	);
 
