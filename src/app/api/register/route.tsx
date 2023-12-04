@@ -7,6 +7,8 @@ import { type CampRegistration } from '@/app/types/camp';
 export const POST = async (req: Request) => {
 	const data = (await req.json()) as CampRegistration;
 	data.dateOfBirth = new Date(data.dateOfBirth);
+
+	console.log(data);
 	const child = await childInfo(data);
 	const parent = await parentInfo(data);
 
