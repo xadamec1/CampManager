@@ -78,3 +78,13 @@ export const campRegistrationSchema = childSchema
 	})
 	.and(healthStatusSchema)
 	.and(parentSchema);
+
+const phoneRegex = new RegExp(
+	/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+);
+
+export const InstructorSchema = z.object({
+	name: z.string(),
+	email: z.string(),
+	phoneNumber: z.string().regex(phoneRegex, 'Invalid Number!')
+});
