@@ -36,6 +36,26 @@ export const CampRegisterForm: React.FC = () => {
 		}
 	});
 
+	const gdprCheckbox = (
+		<label className="mb-2 block p-2">
+			GDPR Compliance:
+			<div>
+				<p> with this you are consenting to the processing of your data</p>
+
+				<input
+					type="checkbox"
+					{...method.register('gdprCheck')}
+					className="m-auto"
+				/>
+				{method.formState.errors.gdprCheck?.message && (
+					<p className="text-red-500">
+						{method.formState.errors.gdprCheck?.message}
+					</p>
+				)}
+			</div>
+		</label>
+	);
+
 	const { campId } = useParams();
 
 	const onSubmit: SubmitHandler<CampRegistration> = data => {
@@ -60,6 +80,8 @@ export const CampRegisterForm: React.FC = () => {
 				{/* Part 3: Parent Section */}
 				<h2 className="mb-2 text-lg font-semibold">Parent Information</h2>
 				<ParentInput />
+
+				{gdprCheckbox}
 				<button
 					type="submit"
 					className="rounded bg-default-text px-4 py-2 text-white hover:bg-blue-700"

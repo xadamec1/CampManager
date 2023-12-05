@@ -63,7 +63,10 @@ export const parentSchema = z.object({
 
 export const campRegistrationSchema = childSchema
 	.extend({
-		campId: z.number().optional()
+		campId: z.number().optional(),
+		gdprCheck: z.literal(true, {
+			errorMap: () => ({ message: 'You must accept the terms' })
+		})
 	})
 	.and(healthStatusSchema)
 	.and(parentSchema);
