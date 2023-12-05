@@ -15,7 +15,7 @@ const Home = () => (
 			<CampCards />
 		</div>
 
-		<h1 className="mt-32 text-xl font-bold">Newsfeed</h1>
+		<h1 className="mt-16 text-xl font-bold">Newsfeed</h1>
 		<Suspense
 			fallback={<span className="loading loading-spinner loading-lg" />}
 		>

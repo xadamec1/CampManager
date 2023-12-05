@@ -25,17 +25,17 @@ const CampCard: React.FC<CardProps> = ({
 	endDate,
 	availablePlaces,
 	campId
-}) => (
-	<div className="max-w-sm overflow-hidden rounded bg-default-card p-8 shadow-lg">
-		<Image
+}) => ( //
+	<div className="carousel-item bg-default-card card mr-10 shadow-xl">
+		<figure><Image
 			className="w-full"
 			width={200}
 			height={200}
 			src={imagePath}
 			alt={name}
-		/>
-		<div className="px-6 py-4">
-			<div className="mb-2 text-xl font-bold">{name}</div>
+		/></figure>
+		<div className="card-body">
+			<div className="card-title text-xl font-bold">{name}</div>
 			<p className="text-base">{truncateText(description)}</p>
 			<div className="mt-4">
 				<p className="">
@@ -48,14 +48,14 @@ const CampCard: React.FC<CardProps> = ({
 					<strong>Available Places:</strong> {availablePlaces}
 				</p>
 			</div>
-		</div>
-		<div className="px-6 py-4">
-			<Link
-				href={`/camp/${campId}`}
-				className="rounded bg-darker-green px-4 py-2 font-bold text-white hover:bg-default-text"
-			>
-				Go to camp
-			</Link>
+			<div className="card-actions justify-end">
+				<Link
+					href={`/camp/${campId}`}
+					className="rounded bg-darker-green font-bold text-white hover:bg-default-text  px-4 py-2"
+				>
+					Go to camp
+				</Link>
+			</div>
 		</div>
 	</div>
 );
@@ -71,7 +71,7 @@ const CampCards = async () => {
 		where: { isPublic: true }
 	});
 	return (
-		<>
+		<div className="carousel rounded-box pt-2 pb-10">
 			{publicCamps.map(camp => (
 				<CampCard
 					key={camp.id}
@@ -85,7 +85,7 @@ const CampCards = async () => {
 					campId={camp.id}
 				/>
 			))}
-		</>
+		</div>
 	);
 };
 
