@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import CampCards from './_components/CampCards';
 import Logo from './_components/Logo';
+import Feed from './_components/Feed';
 
 const Home = () => (
 	<div className="container mx-auto mt-8">
@@ -13,6 +14,15 @@ const Home = () => (
 		<div className="flex flex-wrap justify-between">
 			<CampCards />
 		</div>
+
+		<h1 className="mt-32 text-xl font-bold">Newsfeed</h1>
+		<Suspense
+			fallback={<span className="loading loading-spinner loading-lg" />}
+		>
+			<div className="mt-5">
+				<Feed />
+			</div>
+		</Suspense>
 	</div>
 );
 export default Home;
