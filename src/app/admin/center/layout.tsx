@@ -2,7 +2,7 @@
 
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { redirect, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const SidebarItem = ({ path, title }: { path: string; title: string }) => {
@@ -18,17 +18,17 @@ const SidebarItem = ({ path, title }: { path: string; title: string }) => {
 		</li>
 	);
 };
-const logOff = () => {
-	signOut();
-	redirect('/admin');
-};
+
 const AdminNavbar = () => (
 	<div className="navbar  bg-default-button">
 		<div className="flex-1">
 			<a className="btn btn-ghost text-xl">CM Admin center</a>
 		</div>
 		<div className="flex-none">
-			<button onClick={() => logOff()} className="btn btn-square btn-ghost">
+			<button
+				onClick={() => signOut({ callbackUrl: '/admin' })}
+				className="btn btn-square btn-ghost"
+			>
 				Logout
 			</button>
 		</div>
