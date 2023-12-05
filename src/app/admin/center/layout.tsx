@@ -18,9 +18,20 @@ const SidebarItem = ({ path, title }: { path: string; title: string }) => {
 	);
 };
 
+const AdminNavbar = () => (
+	<div className="navbar bg-default-button">
+		<div className="flex-1">
+			<a className="btn btn-ghost text-xl">CM Admin center</a>
+		</div>
+		<div className="flex-none">
+			<button className="btn btn-square btn-ghost">Logout</button>
+		</div>
+	</div>
+);
+
 const Sidebar = () => {
 	return (
-		<ul className="menu mt-10  bg-default-button">
+		<ul className="menu w-full  bg-default-button pt-10">
 			<SidebarItem path={'/admin/center/camps'} title={'Camps'} />
 			<SidebarItem path={'/admin/center/instructors'} title={'Instructors'} />
 		</ul>
@@ -28,12 +39,15 @@ const Sidebar = () => {
 };
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => (
-	<div className="grid grid-cols-12 gap-4">
-		<div className="col-span-2">
-			<Sidebar />
-		</div>
+	<div>
+		<AdminNavbar />
+		<div className="grid h-full grid-cols-12 gap-4">
+			<div className="col-span-2">
+				<Sidebar />
+			</div>
 
-		<div className="col-span-10">{children}</div>
+			<div className="col-span-10">{children}</div>
+		</div>
 	</div>
 );
 
