@@ -1,13 +1,16 @@
-// src/app/LoginStatus.tsx
-
 'use client';
 
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 const LoginStatus = () => {
 	const { data, status } = useSession();
-	if (status === 'loading') return <div>loading...</div>;
+	if (status === 'loading')
+		return (
+			<div className="flex h-screen flex-col items-center justify-center">
+				<span className="loading loading-spinner loading-lg"></span>{' '}
+			</div>
+		);
 	if (status === 'unauthenticated') {
 		return (
 			<div className="flex h-screen flex-col items-center justify-center">
