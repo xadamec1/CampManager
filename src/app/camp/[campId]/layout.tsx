@@ -13,9 +13,7 @@ const CampLayout = ({
 		<nav className="my-auto bg-default-card">
 			<ul className=" container mx-auto flex items-center justify-between px-10 py-4">
 				<NavbarItem path="/" name="Other available camps" />
-				<NavbarItem path={`/camp/${params.campId}/about`} name="About camp" />
 				<NavbarItem path={`/camp/${params.campId}/register`} name="Register" />
-				<NavbarItem path={`/camp/${params.campId}/news`} name="Camp news" />
 				<NavbarItem path={`/camp/${params.campId}/contact`} name="Contacts" />
 			</ul>
 		</nav>
