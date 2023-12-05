@@ -19,7 +19,7 @@ const main = async () => {
 			address: {
 				connect: { id: address1.id }
 			},
-			name: 'Summer Camp 2023',
+			name: 'Summer Camp 2024',
 			organiser: 'Organiser Name',
 			notes: 'Some notes about the camp',
 			neededEquipment: 'Tents, Sleeping Bags, etc.',
@@ -28,8 +28,8 @@ const main = async () => {
 			price: 50,
 			isRegistrationOpen: true,
 			isPublic: true,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: new Date('2024-08-1'),
+			endDate: new Date('2024-08-7'),
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
@@ -38,7 +38,7 @@ const main = async () => {
 			address: {
 				connect: { id: address1.id }
 			},
-			name: 'Summer Camp 2023 2',
+			name: 'Currently Running Camp',
 			organiser: 'Organiser Name 2',
 			notes: 'Some notes about the camp',
 			neededEquipment: 'Tents, Sleeping Bags, etc.',
@@ -47,8 +47,8 @@ const main = async () => {
 			price: 5000,
 			isRegistrationOpen: true,
 			isPublic: true,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: new Date(new Date().setDate(new Date().getDate() - 5)),
+			endDate: new Date(new Date().setDate(new Date().getDate() + 5)),
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
@@ -66,8 +66,8 @@ const main = async () => {
 			price: 5000,
 			isRegistrationOpen: true,
 			isPublic: true,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: new Date('2023-08-1'),
+			endDate: new Date('2023-08-7'),
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
@@ -129,41 +129,6 @@ const main = async () => {
 			title: 'Camp finished',
 			content:
 				"What a wonderful week we had at our summer camp! We want to thank all the parents and kids who participated in our amazing program. We had so much fun exploring, learning, and playing together. Some of the highlights were the scavenger hunt, the talent show, the campfire, and the water balloon fight. We hope you enjoyed it as much as we did. Please share your feedback and photos with us on our social media pages. We can't wait to see you again next year!"
-		}
-	});
-
-	await prisma.galleryPhoto.create({
-		data: {
-			src: 'https://lh3.googleusercontent.com/drive-storage/AKHj6E78RfyaU4r4UsNVjD6rRgVMHm9jZWvKJ_PzkQpiAoYmf4vXux0kLfmMCFpu27HwgHvxJorM2_rOSD95vKIg62EQPVH-pcNOfUDxF-TbsQ=s1920',
-			camp: {
-				connect: { id: camp1.id }
-			}
-		}
-	});
-	await prisma.galleryPhoto.create({
-		data: {
-			src: 'https://lh3.googleusercontent.com/drive-storage/AKHj6E78RfyaU4r4UsNVjD6rRgVMHm9jZWvKJ_PzkQpiAoYmf4vXux0kLfmMCFpu27HwgHvxJorM2_rOSD95vKIg62EQPVH-pcNOfUDxF-TbsQ=s1920',
-			camp: {
-				connect: { id: camp1.id }
-			}
-		}
-	});
-
-	await prisma.galleryPhoto.create({
-		data: {
-			src: 'https://lh3.googleusercontent.com/drive-storage/AKHj6E4xgU5GB579_cHiJdmGCJ7wSqlGYRclF5lekV2vVUvUhHLwyu5QO4yTTXKuoInloKEkdKcSptOwg_5I4AjLdnfLqml3XQz4jo4kh07wDg=s1920',
-			camp: {
-				connect: { id: camp1.id }
-			}
-		}
-	});
-
-	await prisma.galleryPhoto.create({
-		data: {
-			src: 'https://lh3.googleusercontent.com/drive-storage/AKHj6E4W5nqQAmnHcQJ2JYeCpuv0rawBn9cGXHm059G3zTzFagKnPCtQdU9gTO6-stgzilR4QYmhoByuHC2JNRPae52y9gF1Rs0wcNSDfbeJNQ=s1920',
-			camp: {
-				connect: { id: camp1.id }
-			}
 		}
 	});
 	console.log('Seed data inserted successfully');
