@@ -27,6 +27,7 @@ model Camp {
   startDate          DateTime
   endDate            DateTime
   registration       Registration[]
+  GalleryPhoto      GalleryPhoto[]
 }
 
 model Registration {
@@ -130,4 +131,11 @@ model FeedPost {
   content         String
   imagePath       String?
   createdAt       DateTime
+}
+
+model GalleryPhoto {
+  id     Int    @id @default(autoincrement())
+  camp   Camp   @relation(fields: [campId], references: [id])
+  campId Int
+  src    String
 }
