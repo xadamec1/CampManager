@@ -8,6 +8,12 @@ const commonMessages = {
 	number: 'Invalid number.'
 };
 
+let maxDate = new Date();
+maxDate = new Date(new Date().setFullYear(new Date().getFullYear() - 5));
+
+let minDate = new Date();
+minDate = new Date(new Date().setFullYear(new Date().getFullYear() - 20));
+
 export const childSchema = z.object({
 	name: z
 		.string()
@@ -17,7 +23,9 @@ export const childSchema = z.object({
 		.string()
 		.min(1, { message: commonMessages.stringMin })
 		.max(50, { message: commonMessages.stringMax }),
-	dateOfBirth: z.date(),
+	dateOfBirth: z.date().refine(d => d >= minDate && d <= maxDate, {
+		message: "the child doesn't belong to the age bracket"
+	}),
 	insuranceCompany: z.string(),
 	insuranceCardImage: z.any().optional(), // TODO: store image not a link here
 	street: z
