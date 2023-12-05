@@ -79,22 +79,6 @@ export const ChildInput = () => {
 		</label>
 	);
 
-	const childInsuranceCardIpnut = (
-		<label className="mb-2 block p-2">
-			Insurance Card Image:
-			<input
-				type="file"
-				{...register('insuranceCardImage')}
-				className="mt-1 w-full rounded border bg-white px-3 py-2"
-			/>
-			{formState.errors.insuranceCardImage?.message && (
-				<p className="text-red-500">
-					{formState.errors.insuranceCardImage?.message}
-				</p>
-			)}
-		</label>
-	);
-
 	const streetInput = (
 		<label className="mb-2 block p-2">
 			Street:
@@ -162,11 +146,8 @@ export const ChildInput = () => {
 otherwise swap the order of the individual labels for desired display
 TODO: decide how to handle this
 */}
-			<div className="hidden lg:block" />
 
 			{childInsuranceCompanyInput}
-
-			{childInsuranceCardIpnut}
 
 			{streetInput}
 
