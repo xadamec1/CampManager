@@ -33,6 +33,44 @@ const main = async () => {
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
+	await prisma.camp.create({
+		data: {
+			address: {
+				connect: { id: address1.id }
+			},
+			name: 'Summer Camp 2023 2',
+			organiser: 'Organiser Name 2',
+			notes: 'Some notes about the camp',
+			neededEquipment: 'Tents, Sleeping Bags, etc.',
+			description: 'Description of the camp',
+			capacity: 25,
+			price: 5000,
+			isRegistrationOpen: true,
+			isPublic: true,
+			startDate: new Date(),
+			endDate: new Date(),
+			imagePath: '/camping_fun_h.webp'
+		}
+	});
+	await prisma.camp.create({
+		data: {
+			address: {
+				connect: { id: address1.id }
+			},
+			name: 'Summer Camp 2023 3',
+			organiser: 'Organiser Name 3',
+			notes: 'Some notes about the camp',
+			neededEquipment: 'Tents, Sleeping Bags, etc.',
+			description: 'Description of the camp',
+			capacity: 25,
+			price: 5000,
+			isRegistrationOpen: true,
+			isPublic: true,
+			startDate: new Date(),
+			endDate: new Date(),
+			imagePath: '/camping_fun_h.webp'
+		}
+	});
 
 	// Seed Children
 	const child1 = await prisma.children.create({
@@ -75,7 +113,24 @@ const main = async () => {
 			paid: true
 		}
 	});
+	await prisma.feedPost.create({
+		data: {
+			createdAt: new Date(),
+			title: 'Camp registration is now open',
+			content:
+				"We are excited to announce that our summer camp registration is now open! If you are looking for a fun and educational experience for your kids, look no further than our camp. We offer a variety of activities, such as arts and crafts, sports, games, nature walks, and more. Our camp counselors are trained and certified to ensure a safe and enjoyable environment for all. Don't miss this opportunity to make lasting memories with your children. Visit our website to learn more and sign up today!",
+			imagePath: '/camping_fun_h.webp'
+		}
+	});
 
+	await prisma.feedPost.create({
+		data: {
+			createdAt: new Date(),
+			title: 'Camp finished',
+			content:
+				"What a wonderful week we had at our summer camp! We want to thank all the parents and kids who participated in our amazing program. We had so much fun exploring, learning, and playing together. Some of the highlights were the scavenger hunt, the talent show, the campfire, and the water balloon fight. We hope you enjoyed it as much as we did. Please share your feedback and photos with us on our social media pages. We can't wait to see you again next year!"
+		}
+	});
 	console.log('Seed data inserted successfully');
 };
 
