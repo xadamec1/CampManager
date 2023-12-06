@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { db } from '@/server/db';
+
+import LoadingComponent from './Loading';
 
 const GetCampStatus = (startDate: Date, endDate: Date) => {
 	const now = new Date();
@@ -32,20 +35,25 @@ const CampList = async () => {
 					</tr>
 				</thead>
 				<tbody>
-					{camps.map(camp => (
-						<tr key={camp.id}>
-							<th>{camp.id}</th>
-							<td>{camp.name}</td>
-							<td>{camp.organiser}</td>
-							<td>{camp.isPublic ? 'Public' : 'Private'}</td>
-							<td>{GetCampStatus(camp.startDate, camp.endDate)}</td>
-							<td className="px-6 text-right">
-								<Link href="#" className="font-bold hover:underline">
-									Edit
-								</Link>
-							</td>
-						</tr>
-					))}
+					<Suspense fallback={<LoadingComponent />}>
+						{camps.map(camp => (
+							<tr key={camp.id}>
+								<th>{camp.id}</th>
+								<td>{camp.name}</td>
+								<td>{camp.organiser}</td>
+								<td>{camp.isPublic ? 'Public' : 'Private'}</td>
+								<td>{GetCampStatus(camp.startDate, camp.endDate)}</td>
+								<td className="px-6 text-right">
+									<Link
+										href={`./camps/${camp.id}`}
+										className="font-bold hover:underline"
+									>
+										Edit
+									</Link>
+								</td>
+							</tr>
+						))}
+					</Suspense>
 				</tbody>
 			</table>
 		</div>
