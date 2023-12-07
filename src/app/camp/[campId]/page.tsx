@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { db } from '@/server/db';
+import Gallery from '@/app/_components/CampGallery';
+import LoadingComponent from '@/app/_components/Loading';
+
+export async function generateMetadata({ params }: CampProps) {
+	const camp = await db.camp.findUnique({
+		where: { id: +params.campId }
+	});
+	return { title: camp?.name, description: camp?.description };
+}
 
 const AboutBox = ({ title, content }: { title: string; content: string }) => (
 	<div className="  sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
@@ -28,13 +37,14 @@ const DescriptionBox = ({
 
 type CampProps = {
 	params: {
-		campId: string;
+		campId: number;
 	};
 };
 
 const About = async ({ params }: CampProps) => {
 	const camp = await db.camp.findUnique({
-		where: { id: +params.campId }
+		where: { id: +params.campId },
+		include: { GalleryPhoto: true }
 	});
 	const place = await db.address.findUnique({
 		where: { id: camp?.addressID }
@@ -69,6 +79,9 @@ const About = async ({ params }: CampProps) => {
 					).toString()}
 				/>
 			</div>
+			<Suspense fallback={<LoadingComponent />}>
+				<Gallery photoLinks={camp?.GalleryPhoto} />
+			</Suspense>
 		</div>
 	);
 };

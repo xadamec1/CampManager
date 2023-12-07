@@ -16,7 +16,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 		<body
 			className={`${inter.className} bg-default-background text-default-text`}
 		>
-			<main className="container mx-auto px-10">
+			<main className=" ">
 				<Providers>{children}</Providers>
 			</main>
 		</body>

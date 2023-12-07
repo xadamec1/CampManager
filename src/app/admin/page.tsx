@@ -1,35 +1,31 @@
-// src/app/LoginStatus.tsx
-
 'use client';
 
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 const LoginStatus = () => {
 	const { data, status } = useSession();
-	if (status === 'loading') return <div>loading...</div>;
+	if (status === 'loading')
+		return (
+			<div className="flex h-screen flex-col items-center justify-center">
+				<span className="loading loading-spinner loading-lg"></span>{' '}
+			</div>
+		);
 	if (status === 'unauthenticated') {
 		return (
-			<div>
+			<div className="flex h-screen flex-col items-center justify-center">
+				<h1 className="m-8 text-lg"> Camp manager Administration Center</h1>
+
 				<button
 					onClick={() => signIn('discord')}
-					className="rounded border border-white p-3"
+					className="rounded border border-white bg-default-button p-3"
 				>
 					Sign in with Discord
 				</button>
 			</div>
 		);
 	}
-	return (
-		<div className="flex items-center gap-3">
-			Hi, {data?.user.name}
-			<button
-				onClick={() => signOut()}
-				className="rounded border border-white p-3"
-			>
-				Sign out
-			</button>
-		</div>
-	);
+	redirect('/admin/center');
 };
 
 export default LoginStatus;

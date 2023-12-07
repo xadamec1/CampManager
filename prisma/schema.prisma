@@ -29,6 +29,7 @@ model Camp {
   registration       Registration[]
   instructors        Instructor[]
   CampInstructors    CampInstructors[]
+  GalleryPhoto      GalleryPhoto[]
 }
 
 model Registration {
@@ -148,4 +149,11 @@ model CampInstructors {
   instructor   Instructor @relation(fields: [instructorId], references: [id])
 
   @@id([campId, instructorId])
+
+
+model GalleryPhoto {
+  id     Int    @id @default(autoincrement())
+  camp   Camp   @relation(fields: [campId], references: [id])
+  campId Int
+  src    String
 }

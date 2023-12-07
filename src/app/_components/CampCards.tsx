@@ -72,7 +72,8 @@ const truncateText = (text: string, limit = 100) => {
 
 const CampCards = async () => {
 	const publicCamps = await db.camp.findMany({
-		where: { isPublic: true }
+		where: { isPublic: true },
+		include: { registration: true }
 	});
 	return (
 		<div className="carousel rounded-box pb-10 pt-2">
@@ -85,7 +86,7 @@ const CampCards = async () => {
 					price={camp.price}
 					beginDate={camp.startDate.toLocaleDateString()}
 					endDate={camp.endDate.toLocaleDateString()}
-					availablePlaces={camp.capacity}
+					availablePlaces={camp.capacity - camp.registration.length}
 					campId={camp.id}
 				/>
 			))}

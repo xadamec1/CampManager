@@ -19,7 +19,7 @@ const main = async () => {
 			address: {
 				connect: { id: address1.id }
 			},
-			name: 'Summer Camp 2023',
+			name: 'Summer Camp 2024',
 			organiser: 'Organiser Name',
 			notes: 'Some notes about the camp',
 			neededEquipment: 'Tents, Sleeping Bags, etc.',
@@ -28,8 +28,8 @@ const main = async () => {
 			price: 50,
 			isRegistrationOpen: true,
 			isPublic: true,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: new Date('2024-08-1'),
+			endDate: new Date('2024-08-7'),
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
@@ -38,7 +38,7 @@ const main = async () => {
 			address: {
 				connect: { id: address1.id }
 			},
-			name: 'Summer Camp 2023 2',
+			name: 'Currently Running Camp',
 			organiser: 'Organiser Name 2',
 			notes: 'Some notes about the camp',
 			neededEquipment: 'Tents, Sleeping Bags, etc.',
@@ -47,8 +47,8 @@ const main = async () => {
 			price: 5000,
 			isRegistrationOpen: true,
 			isPublic: true,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: new Date(new Date().setDate(new Date().getDate() - 5)),
+			endDate: new Date(new Date().setDate(new Date().getDate() + 5)),
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
@@ -66,8 +66,8 @@ const main = async () => {
 			price: 5000,
 			isRegistrationOpen: true,
 			isPublic: true,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: new Date('2023-08-1'),
+			endDate: new Date('2023-08-7'),
 			imagePath: '/camping_fun_h.webp'
 		}
 	});
