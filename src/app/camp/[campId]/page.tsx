@@ -4,9 +4,15 @@ import { db } from '@/server/db';
 import Gallery from '@/app/_components/CampGallery';
 import LoadingComponent from '@/app/_components/Loading';
 
-export async function generateMetadata({ params }: CampProps) {
+export async function generateMetadata({
+	params
+}: {
+	params: { campId: string };
+}): Promise<Metadata> {
 	const camp = await db.camp.findUnique({
-		where: { id: +params.campId }
+		where: {
+			id: +params.campId
+		}
 	});
 	return { title: camp?.name, description: camp?.description };
 }

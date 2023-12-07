@@ -1,4 +1,21 @@
 import { db } from '@/server/db';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+	params
+}: {
+	params: { campId: string };
+}): Promise<Metadata> {
+	const camp = await db.camp.findUnique({
+		where: {
+			id: +params.campId
+		}
+	});
+	return {
+		title: `About: ${camp?.name}`,
+		description: `about page for ${camp?.description}`
+	};
+}
 
 const AboutBox = ({ title, content }: { title: string; content: string }) => (
 	<div className="  sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
