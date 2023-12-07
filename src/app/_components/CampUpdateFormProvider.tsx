@@ -13,7 +13,6 @@ import { campFormSchema } from '../validators/camp';
 const CampUpdateFormProvider = ({
 	currentCamp
 }: PropsWithChildren & { currentCamp: CampWithAddress }) => {
-
 	const useEditCamp = () =>
 		useMutation({
 			mutationFn: (camp: Camp) =>
@@ -27,14 +26,15 @@ const CampUpdateFormProvider = ({
 				})
 		});
 	const { mutate } = useEditCamp();
-
+	const router = useRouter();
 	const onSubmit: SubmitHandler<CampFormSchema> = data => {
 		mutate(
-			{ id:currentCamp.id, addressID:currentCamp.addressID, ...data },
+			{ id: currentCamp.id, addressID: currentCamp.addressID, ...data },
 			{
 				onSuccess: response => {
 					console.log(data.name);
 					console.log(response);
+					router.push(`.`);
 				},
 				onError: error => {
 					console.log(error);
@@ -46,53 +46,52 @@ const CampUpdateFormProvider = ({
 	return (
 		<Form
 			schema={campFormSchema}
-			onSubmit={(data) => console.log(data)}
+			onSubmit={onSubmit}
 			defaultValues={currentCamp}
-			className="flex flex-col w-11"
+			className="flex w-11 flex-col"
 			fields={{
-				isPublic: {
+				'isPublic': {
 					label: 'Make public',
 					type: 'checkbox',
 					className: 'btn'
 				},
-				isRegistrationOpen: {
+				'isRegistrationOpen': {
 					label: 'Open registration',
 					type: 'checkbox',
 					className: 'btn'
 				},
-				description: {
+				'description': {
 					label: 'Camp description',
-					type: 'textarea',
+					type: 'textarea'
 				},
-				startDate: {
+				'startDate': {
 					className: 'flex',
-					columns: 2,
+					columns: 2
 				},
-				endDate: {
+				'endDate': {
 					className: 'flex',
-					columns: 2,
+					columns: 2
 				},
 				'address.streetNumber': {
-					label: 'Street number',
+					label: 'Street number'
 				},
 				'address.city': {
-					label: 'City',
+					label: 'City'
 				},
 				'address.zipCode': {
-					label: 'Zip code',
+					label: 'Zip code'
 				},
 				'address.notes': {
 					label: 'Address notes',
-					type: 'textarea',
+					type: 'textarea'
 				},
-				address: {
+				'address': {
 					type: 'object',
-					label: 'Address',
+					label: 'Address'
 				},
-				submit: {
+				'submit': {
 					children: 'Save post'
-				},
-				
+				}
 			}}
 		/>
 	);
