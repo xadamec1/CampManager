@@ -1,5 +1,6 @@
 import { db } from '@/server/db';
-import { Instructor } from '../types/camp';
+
+import { type Instructor } from '../types/camp';
 
 const createInstructor = async (data: Instructor): Promise<Instructor> =>
 	db.instructor.create({

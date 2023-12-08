@@ -22,7 +22,7 @@ export const POST = async (req: Request) => {
 	}
 
 	const res = await createRegistration({
-		campId: data.campId,
+		campId: data.campId ?? 0,
 		childId: child.id,
 		parentId: parent.id,
 		accepted: false,

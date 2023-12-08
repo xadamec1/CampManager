@@ -1,5 +1,4 @@
 import React from 'react';
-import { type Metadata } from 'next';
 
 import NavbarItem from '@/app/_components/NavbarItem';
 

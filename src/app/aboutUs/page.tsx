@@ -1,9 +1,10 @@
 // pages/about-us.js
 
 import React from 'react';
+import { type Metadata } from 'next';
+
 import { getInstructors } from '../services/instructorService';
 import InstructorInfo from '../_components/InstructorInfo';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: 'Kepa camp/aboutUs',
@@ -22,7 +23,7 @@ const AboutUs = async () => {
 				<h2 className="mb-4 text-2xl font-semibold">Organizátoři tábora</h2>
 				{instructors.map(x => (
 					<InstructorInfo
-						key={x}
+						key={x.id}
 						name={x.name}
 						email={x.email}
 						phoneNumber={x.phoneNumber}

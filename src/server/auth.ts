@@ -1,4 +1,4 @@
-// src/server/auth.ts
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 
 // eslint-disable-next-line import/no-unresolved
 import { PrismaAdapter } from '@next-auth/prisma-adapter';

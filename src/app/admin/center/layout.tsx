@@ -1,8 +1,8 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { redirect, usePathname } from 'next/navigation';
 import React from 'react';
 
 const SidebarItem = ({ path, title }: { path: string; title: string }) => {
@@ -22,7 +22,9 @@ const SidebarItem = ({ path, title }: { path: string; title: string }) => {
 const AdminNavbar = () => (
 	<div className="navbar  bg-default-button">
 		<div className="flex-1">
-			<a className="btn btn-ghost text-xl">CM Admin center</a>
+			<a href="/admin/center" className="btn btn-ghost text-xl">
+				CM Admin center
+			</a>
 		</div>
 		<div className="flex-none">
 			<button
@@ -35,26 +37,30 @@ const AdminNavbar = () => (
 	</div>
 );
 
-const Sidebar = () => {
+const Sidebar = () => (
+	<ul className="menu h-full   bg-default-button pt-5">
+		<SidebarItem path="/admin/center/camps" title="Camps" />
+		<SidebarItem path="/admin/center/instructors" title="Instructors" />
+	</ul>
+);
+
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+	const { status } = useSession();
+	if (status === 'unauthenticated') {
+		redirect('/admin');
+	}
 	return (
-		<ul className="menu h-full   bg-default-button pt-5">
-			<SidebarItem path={'/admin/center/camps'} title={'Camps'} />
-			<SidebarItem path={'/admin/center/instructors'} title={'Instructors'} />
-		</ul>
+		<div>
+			<AdminNavbar />
+			<div className="grid h-screen grid-cols-12 gap-4">
+				<div className="col-span-2">
+					<Sidebar />
+				</div>
+
+				<div className="col-span-10">{children}</div>
+			</div>
+		</div>
 	);
 };
-
-const AdminLayout = ({ children }: { children: React.ReactNode }) => (
-	<div>
-		<AdminNavbar />
-		<div className="grid h-screen grid-cols-12 gap-4">
-			<div className="col-span-2">
-				<Sidebar />
-			</div>
-
-			<div className="col-span-10">{children}</div>
-		</div>
-	</div>
-);
 
 export default AdminLayout;

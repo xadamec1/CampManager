@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 const LoginStatus = () => {
@@ -8,7 +8,7 @@ const LoginStatus = () => {
 	if (status === 'loading')
 		return (
 			<div className="flex h-screen flex-col items-center justify-center">
-				<span className="loading loading-spinner loading-lg"></span>{' '}
+				<span className="loading loading-spinner loading-lg" />{' '}
 			</div>
 		);
 	if (status === 'unauthenticated') {
@@ -25,7 +25,13 @@ const LoginStatus = () => {
 			</div>
 		);
 	}
-	redirect('/admin/center');
+	const admins = ['petr.adamec@skaut.cz', '12marting02@gmail.com'];
+
+	if (admins.includes(data?.user.email as string)) {
+		redirect('/admin/center');
+	}
+	signOut();
+	redirect('/');
 };
 
 export default LoginStatus;

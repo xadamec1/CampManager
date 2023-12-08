@@ -1,8 +1,14 @@
 import React, { Suspense } from 'react';
+import { type Metadata } from 'next';
 
 import CampCards from './_components/CampCards';
 import Logo from './_components/Logo';
 import Feed from './_components/Feed';
+
+export const metadata: Metadata = {
+	title: 'Camp Manager',
+	description: 'Camp with us'
+};
 
 const Home = () => (
 	<div className="container mx-auto mt-8">

@@ -1,7 +1,6 @@
 'use client';
 
 import { type SubmitHandler } from 'react-hook-form';
-import { type UseMutationResult } from '@tanstack/react-query';
 import { Form } from '@saas-ui/forms/zod';
 
 import { type CampFormSchema, type CampWithAddress } from '../types/camp';
