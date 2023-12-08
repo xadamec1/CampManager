@@ -131,6 +131,15 @@ const main = async () => {
 				"What a wonderful week we had at our summer camp! We want to thank all the parents and kids who participated in our amazing program. We had so much fun exploring, learning, and playing together. Some of the highlights were the scavenger hunt, the talent show, the campfire, and the water balloon fight. We hope you enjoyed it as much as we did. Please share your feedback and photos with us on our social media pages. We can't wait to see you again next year!"
 		}
 	});
+
+
+	await prisma.instructor.create({
+		data: {
+			name: 'John Doe',
+			email: 'john.doe@example.com',
+			phoneNumber: '+1234567890'		}
+	})
+
 	console.log('Seed data inserted successfully');
 };
 
