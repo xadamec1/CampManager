@@ -4,7 +4,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 const LoginStatus = () => {
-	const { data, status } = useSession();
+	const { status } = useSession();
 	if (status === 'loading')
 		return (
 			<div className="flex h-screen flex-col items-center justify-center">

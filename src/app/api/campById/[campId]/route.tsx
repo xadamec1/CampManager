@@ -4,7 +4,7 @@ import { db } from '@/server/db';
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export async function GET(
-	request: Request,
+	_request: Request,
 	{ params }: { params: { campId: string } }
 ) {
 	try {

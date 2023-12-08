@@ -1,7 +1,6 @@
-// InstructorInfo.js
-
 import React from 'react';
-import { Instructor } from '../types/camp';
+
+import { type Instructor } from '../types/camp';
 
 const InstructorInfo = (instructor: Instructor) => (
 	<div className="rounded-lg p-6 ">

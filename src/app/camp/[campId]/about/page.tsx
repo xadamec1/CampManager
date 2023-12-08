@@ -1,21 +1,23 @@
-import { db } from '@/server/db';
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 
-export async function generateMetadata({
+import { db } from '@/server/db';
+
+const generateMetadata = async ({
 	params
 }: {
 	params: { campId: string };
-}): Promise<Metadata> {
+}): Promise<Metadata> => {
 	const camp = await db.camp.findUnique({
 		where: {
 			id: +params.campId
 		}
 	});
+
 	return {
 		title: `About: ${camp?.name}`,
 		description: `about page for ${camp?.description}`
 	};
-}
+};
 
 const AboutBox = ({ title, content }: { title: string; content: string }) => (
 	<div className="  sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
