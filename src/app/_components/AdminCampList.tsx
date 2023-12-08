@@ -39,13 +39,20 @@ const CampList = async () => {
 						{camps.map(camp => (
 							<tr key={camp.id}>
 								<th>{camp.id}</th>
-								<td>{camp.name}</td>
+								<td>
+									<Link
+										href={`./camps/${camp.id}`}
+										className="font-bold hover:underline"
+									>
+										{camp.name}
+									</Link>
+								</td>
 								<td>{camp.organiser}</td>
 								<td>{camp.isPublic ? 'Public' : 'Private'}</td>
 								<td>{GetCampStatus(camp.startDate, camp.endDate)}</td>
 								<td className="px-6 text-right">
 									<Link
-										href={`./camps/${camp.id}`}
+										href={`./camps/${camp.id}/edit`}
 										className="font-bold hover:underline"
 									>
 										Edit

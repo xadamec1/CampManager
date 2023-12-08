@@ -37,7 +37,7 @@ const CampUpdateForm = ({
 				onSuccess: response => {
 					console.log(data.name);
 					console.log(response);
-					router.push(`.`);
+					router.push(`./`);
 				},
 				onError: error => {
 					console.log(error);
