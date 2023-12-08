@@ -1,22 +1,19 @@
 'use client';
-import { type PropsWithChildren } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { type SubmitHandler } from 'react-hook-form';
 
-import { type CampFormSchema, type CampWithAddress } from '../types/camp';
+import { type CampFormSchema } from '../types/camp';
 
 import CampForm from './CampForm';
 
-const CampUpdateForm = ({
-	currentCamp
-}: PropsWithChildren & { currentCamp: CampWithAddress }) => {
+const CampCreateForm = () => {
 	const router = useRouter();
-	const useEditCamp = () =>
+	const useCreateCamp = () =>
 		useMutation({
-			mutationFn: (camp: CampWithAddress) =>
+			mutationFn: (camp: CampFormSchema) =>
 				fetch(`/api/camp`, {
-					method: 'PUT',
+					method: 'POST',
 					body: JSON.stringify(camp),
 					headers: {
 						'Accept': 'application/json',
@@ -24,14 +21,11 @@ const CampUpdateForm = ({
 					}
 				})
 		});
-	const { mutate } = useEditCamp();
+	const { mutate } = useCreateCamp();
 	const onSubmit: SubmitHandler<CampFormSchema> = data => {
 		mutate(
 			{
-				id: currentCamp.id,
-				addressID: currentCamp.addressID,
-				...data,
-				address: { id: currentCamp.addressID, ...data.address }
+				...data
 			},
 			{
 				onSuccess: response => {
@@ -46,6 +40,6 @@ const CampUpdateForm = ({
 			}
 		);
 	};
-	return <CampForm currentCamp={currentCamp} onSubmit={onSubmit} />;
+	return <CampForm onSubmit={onSubmit} currentCamp={undefined} />;
 };
-export default CampUpdateForm;
+export default CampCreateForm;
