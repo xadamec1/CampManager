@@ -1,40 +1,35 @@
 'use client';
-import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
-import { type PropsWithChildren } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { Prisma, type Camp } from '@prisma/client';
+
+import { type SubmitHandler } from 'react-hook-form';
+import { type UseMutationResult } from '@tanstack/react-query';
 import { Form } from '@saas-ui/forms/zod';
 
-import { type CampWithAddress, type CampFormSchema } from '../types/camp';
+import { type CampFormSchema, type CampWithAddress } from '../types/camp';
 import { campFormSchema } from '../validators/camp';
 
-const CampUpdateFormProvider = ({
-	currentCamp
-}: PropsWithChildren & { currentCamp: CampWithAddress }) => {
-	const useEditCamp = () =>
-		useMutation({
-			mutationFn: (camp: Camp) =>
-				fetch(`/api/camp`, {
-					method: 'PUT',
-					body: JSON.stringify(camp),
-					headers: {
-						'Accept': 'application/json',
-						'Content-Type': 'application/json'
-					}
-				})
-		});
-	const { mutate } = useEditCamp();
-	const router = useRouter();
+const CampForm = ({
+	currentCamp,
+	mutationFn,
+	routeFn
+}: {
+	currentCamp: CampWithAddress;
+	mutationFn: () => UseMutationResult<Response, Error, CampWithAddress>;
+	routeFn: () => Promise<boolean>;
+}) => {
+	const { mutate } = mutationFn();
 	const onSubmit: SubmitHandler<CampFormSchema> = data => {
 		mutate(
-			{ id: currentCamp.id, addressID: currentCamp.addressID, ...data },
+			{
+				id: currentCamp.id,
+				addressID: currentCamp.addressID,
+				...data,
+				address: { id: currentCamp.addressID, ...data.address }
+			},
 			{
 				onSuccess: response => {
 					console.log(data.name);
 					console.log(response);
-					router.push(`.`);
+					routeFn();
 				},
 				onError: error => {
 					console.log(error);
@@ -96,4 +91,5 @@ const CampUpdateFormProvider = ({
 		/>
 	);
 };
-export default CampUpdateFormProvider;
+
+export default CampForm;

@@ -1,8 +1,6 @@
 import { db } from '@/server/db';
 import { type CampWithAddress } from '@/app/types/camp';
 
-import { type Camp } from '../../../../prisma/generated/zod';
-
 export const GET = async (_req: Request) => {
 	try {
 		// List all Camps
