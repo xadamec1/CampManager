@@ -1,5 +1,8 @@
+import { getServerSession } from 'next-auth';
+
 import { db } from '@/server/db';
 import { type CampFormSchema, type CampWithAddress } from '@/app/types/camp';
+import { getServerAuthSession } from '@/server/auth';
 
 export const GET = async (_req: Request) => {
 	try {
@@ -11,10 +14,15 @@ export const GET = async (_req: Request) => {
 	}
 };
 
-export const PUT = async (_req: Request) => {
+export const PUT = async (req: Request) => {
 	try {
+		const status = await getServerAuthSession();
+		if (!status) {
+			return Response.json({ status: 401 });
+		}
+
 		const { id, addressID, address, ...updateCampRequest } =
-			(await _req.json()) as CampWithAddress;
+			(await req.json()) as CampWithAddress;
 		const updatedCamp = await db.camp.update({
 			where: { id },
 			data: updateCampRequest
