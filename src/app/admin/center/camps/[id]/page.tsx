@@ -12,9 +12,11 @@ const EditPage = async ({ params }: CampProps) => {
 		where: { id: +params.id },
 		include: { address: true }
 	});
-	return (
+	return camp === null ? (
+		<div>Unexpeted error, try again later</div>
+	) : (
 		<div className="r-10">
-			<CampUpdateForm currentCamp={camp!} />
+			<CampUpdateForm currentCamp={camp} />
 		</div>
 	);
 };
