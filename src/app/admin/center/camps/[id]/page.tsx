@@ -1,4 +1,4 @@
-import CampUpdateFormProvider from '@/app/_components/CampUpdateFormProvider';
+import CampUpdateForm from '@/app/_components/CampUpdateForm';
 import { db } from '@/server/db';
 
 type CampProps = {
@@ -14,7 +14,7 @@ const EditPage = async ({ params }: CampProps) => {
 	});
 	return (
 		<div className="r-10">
-			<CampUpdateFormProvider currentCamp={camp!} />
+			<CampUpdateForm currentCamp={camp!} />
 		</div>
 	);
 };

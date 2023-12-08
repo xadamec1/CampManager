@@ -1,5 +1,12 @@
-import CampList from '@/app/_components/AdminCampList';
+import { Suspense } from 'react';
 
-const Page = () => <CampList />;
+import CampList from '@/app/_components/AdminCampList';
+import LoadingComponent from '@/app/_components/Loading';
+
+const Page = () => (
+	<Suspense fallback={<LoadingComponent />}>
+		<CampList />
+	</Suspense>
+);
 
 export default Page;
