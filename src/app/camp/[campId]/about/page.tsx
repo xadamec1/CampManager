@@ -2,7 +2,7 @@ import { type Metadata } from 'next';
 
 import { db } from '@/server/db';
 
-const generateMetadata = async ({
+export const generateMetadata = async ({
 	params
 }: {
 	params: { campId: string };

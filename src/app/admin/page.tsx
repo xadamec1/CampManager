@@ -8,7 +8,7 @@ const LoginStatus = () => {
 	if (status === 'loading')
 		return (
 			<div className="flex h-screen flex-col items-center justify-center">
-				<span className="loading loading-spinner loading-lg"></span>{' '}
+				<span className="loading loading-spinner loading-lg" />{' '}
 			</div>
 		);
 	if (status === 'unauthenticated') {
