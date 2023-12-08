@@ -28,9 +28,7 @@ const CampCreateForm = () => {
 				...data
 			},
 			{
-				onSuccess: response => {
-					console.log(data.name);
-					console.log(response);
+				onSuccess: _response => {
 					router.push(`.`);
 				},
 				onError: error => {
