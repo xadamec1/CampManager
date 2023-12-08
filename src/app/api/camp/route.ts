@@ -1,5 +1,5 @@
 import { db } from '@/server/db';
-import { type CampWithAddress } from '@/app/types/camp';
+import { type CampFormSchema, type CampWithAddress } from '@/app/types/camp';
 
 export const GET = async (_req: Request) => {
 	try {
@@ -25,6 +25,25 @@ export const PUT = async (_req: Request) => {
 			data: updateAddress
 		});
 		const resp = { address: updatedAddress, ...updatedCamp };
+		return Response.json(resp);
+	} catch (error) {
+		return Response.json({ error: 'Internal Server Error' });
+	}
+};
+
+export const POST = async (_req: Request) => {
+	try {
+		const { address: createAddress, ...createCampRequest } =
+			(await _req.json()) as CampFormSchema;
+		const newAddress = await db.address.create({
+			data: createAddress
+		});
+
+		const newCamp = await db.camp.create({
+			data: { addressID: newAddress.id, ...createCampRequest }
+		});
+
+		const resp = { address: newAddress, ...newCamp };
 		return Response.json(resp);
 	} catch (error) {
 		return Response.json({ error: 'Internal Server Error' });

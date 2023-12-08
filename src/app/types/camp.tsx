@@ -20,5 +20,15 @@ export type Instructor = z.infer<typeof InstructorSchema>;
 const includeAddress = Prisma.validator<Prisma.CampDefaultArgs>()({
 	include: { address: true }
 });
+const includeAddressAndRegistrations =
+	Prisma.validator<Prisma.CampDefaultArgs>()({
+		include: {
+			address: true,
+			registration: { include: { parent: true, child: true } }
+		}
+	});
 
 export type CampWithAddress = Prisma.CampGetPayload<typeof includeAddress>;
+export type CampWithAddressAndRegistrations = Prisma.CampGetPayload<
+	typeof includeAddressAndRegistrations
+>;

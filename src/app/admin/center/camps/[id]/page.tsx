@@ -1,4 +1,6 @@
-import CampUpdateForm from '@/app/_components/CampUpdateForm';
+import Link from 'next/link';
+
+import CampDetails from '@/app/_components/CampDetails';
 import { db } from '@/server/db';
 
 type CampProps = {
@@ -7,16 +9,24 @@ type CampProps = {
 	};
 };
 
-const EditPage = async ({ params }: CampProps) => {
+const CampInfo = async ({ params }: CampProps) => {
 	const camp = await db.camp.findUnique({
 		where: { id: +params.id },
-		include: { address: true }
+		include: {
+			address: true,
+			registration: { include: { parent: true, child: true } }
+		}
 	});
-	return (
+	return camp === null ? (
+		<div>Unexpeted error, try again later</div>
+	) : (
 		<div className="r-10">
-			<CampUpdateForm currentCamp={camp!} />
+			<Link href={`./${camp.id}/edit`} className="font-bold hover:underline">
+				Edit
+			</Link>
+			<CampDetails camp={camp} />
 		</div>
 	);
 };
 
-export default EditPage;
+export default CampInfo;

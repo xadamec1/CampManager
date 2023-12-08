@@ -1,4 +1,4 @@
-import LoadingComponent from "@/app/_components/Loading";
+import LoadingComponent from '@/app/_components/Loading';
 
 const EditLoading = () => <LoadingComponent />;
 
