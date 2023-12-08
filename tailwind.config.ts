@@ -15,10 +15,10 @@ const config: Config = {
 			},
 			colors: {
 				'default-background': '#FEFAE0',
-				'default-text': '#D4A373',
+				'default-text': '#AD4E0B',
 				'default-button': '#FAEDCD',
 				'default-card': '#E9EDC9',
-				'darker-green': '#CCD5AE'
+				'darker-green': '#737B4C'
 			}
 		}
 	},

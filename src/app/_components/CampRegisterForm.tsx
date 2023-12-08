@@ -67,7 +67,7 @@ export const CampRegisterForm: React.FC = () => {
 	return (
 		<form
 			onSubmit={method.handleSubmit(onSubmit)}
-			className=" mx-auto mt-8 rounded bg-default-card p-6 shadow-md"
+			className="mx-auto mt-8 rounded bg-default-card p-6 shadow-md [&>div>label>*]:bg-white"
 		>
 			<FormProvider {...method}>
 				{/* Part 1: Child Section */}
