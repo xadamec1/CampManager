@@ -149,6 +149,7 @@ model CampInstructors {
   instructor   Instructor @relation(fields: [instructorId], references: [id])
 
   @@id([campId, instructorId])
+}
 
 
 model GalleryPhoto {
