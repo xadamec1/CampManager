@@ -1,8 +1,8 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { redirect, usePathname } from 'next/navigation';
 import React from 'react';
 
 const SidebarItem = ({ path, title }: { path: string; title: string }) => {
@@ -44,17 +44,23 @@ const Sidebar = () => (
 	</ul>
 );
 
-const AdminLayout = ({ children }: { children: React.ReactNode }) => (
-	<div>
-		<AdminNavbar />
-		<div className="grid h-screen grid-cols-12 gap-4">
-			<div className="col-span-2">
-				<Sidebar />
-			</div>
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+	const { status } = useSession();
+	if (status === 'unauthenticated') {
+		redirect('/admin');
+	}
+	return (
+		<div>
+			<AdminNavbar />
+			<div className="grid h-screen grid-cols-12 gap-4">
+				<div className="col-span-2">
+					<Sidebar />
+				</div>
 
-			<div className="col-span-10">{children}</div>
+				<div className="col-span-10">{children}</div>
+			</div>
 		</div>
-	</div>
-);
+	);
+};
 
 export default AdminLayout;
