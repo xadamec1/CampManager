@@ -35,14 +35,12 @@ const AdminNavbar = () => (
 	</div>
 );
 
-const Sidebar = () => {
-	return (
-		<ul className="menu h-full   bg-default-button pt-5">
-			<SidebarItem path={'/admin/center/camps'} title={'Camps'} />
-			<SidebarItem path={'/admin/center/instructors'} title={'Instructors'} />
-		</ul>
-	);
-};
+const Sidebar = () => (
+	<ul className="menu h-full   bg-default-button pt-5">
+		<SidebarItem path="/admin/center/camps" title="Camps" />
+		<SidebarItem path="/admin/center/instructors" title="Instructors" />
+	</ul>
+);
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => (
 	<div>
