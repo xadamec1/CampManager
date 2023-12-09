@@ -18,12 +18,15 @@ export const POST = async (req: Request) => {
 };
 
 export const PUT = async (req: Request) => {
-	const data = req.body as Partial<FeedPost>;
+	const data = (await req.json()) as Partial<FeedPost>;
 	const feedPostId = data.id;
+
+	console.log(data);
+	console.log(feedPostId);
 
 	if (feedPostId) {
 		const updatedFeedPost = await updateFeedPost(feedPostId, data);
-
+		console.log(updateFeedPost);
 		if (updatedFeedPost) {
 			return Response.json(updatedFeedPost);
 		} else {

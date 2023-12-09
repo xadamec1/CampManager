@@ -5,9 +5,12 @@ const FeedPostSchema = z.object({
 	title: z.string(),
 	content: z.string(),
 	imagePath: z.string().nullable(),
-	createdAt: z.date()
+	createdAt: z.coerce.date()
 });
 
+export const FeedPostCreateSchema = FeedPostSchema.omit({ id: true });
+
 export type FeedPostSchemaType = z.infer<typeof FeedPostSchema>;
+export type FeedPostCreateType = z.infer<typeof FeedPostCreateSchema>;
 
 export default FeedPostSchema;

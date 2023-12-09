@@ -1,5 +1,6 @@
+import { type FeedPost } from '@prisma/client';
+
 import { db } from '@/server/db';
-import { FeedPost } from '../types/camp'; // Make sure to import the correct type for FeedPost
 
 const createFeedPost = async (data: Omit<FeedPost, 'id'>): Promise<FeedPost> =>
 	db.feedPost.create({
