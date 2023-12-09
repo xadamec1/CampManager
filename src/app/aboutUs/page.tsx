@@ -4,11 +4,7 @@ import React from 'react';
 import { type Metadata } from 'next';
 
 import { getInstructors } from '../services/instructorService';
-<<<<<<< HEAD
-import InstructorInfo from '../_components/InstructorInfo';
-=======
 import InstructorDetail from '../_components/InstructorDetail';
->>>>>>> 20cbabf (feat: Instructor Form)
 
 export const metadata: Metadata = {
 	title: 'Kepa camp/aboutUs',
@@ -26,15 +22,12 @@ const AboutUs = async () => {
 
 				<h2 className="mb-4 text-2xl font-semibold">Organizátoři tábora</h2>
 				{instructors.map(x => (
-<<<<<<< HEAD
-					<InstructorInfo
-=======
 					<InstructorDetail
->>>>>>> 20cbabf (feat: Instructor Form)
 						key={x.id}
 						name={x.name}
 						email={x.email}
 						phoneNumber={x.phoneNumber}
+						id={x.id}
 					/>
 				))}
 			</section>
