@@ -2,9 +2,9 @@
 import React from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler } from 'react-hook-form';
 
-import { Instructor, type InstructorFormSchema } from '../types/camp';
+import { type Instructor, type InstructorFormSchema } from '../types/camp';
 
 import InstructorForm from './InstructorForm';
 
