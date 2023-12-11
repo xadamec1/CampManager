@@ -41,6 +41,7 @@ const Sidebar = () => (
 	<ul className="menu h-full   bg-default-button pt-5">
 		<SidebarItem path="/admin/center/camps" title="Camps" />
 		<SidebarItem path="/admin/center/instructors" title="Instructors" />
+		<SidebarItem path="/admin/center/feeds" title="Feeds" />
 	</ul>
 );
 
