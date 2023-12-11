@@ -1,11 +1,11 @@
+'use client';
 // Ensure you import the necessary types and schemas
-import { type SubmitHandler } from 'react-hook-form';
-import { Form } from '@saas-ui/forms/zod';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import FeedPostSchema, {
 	FeedPostCreateSchema,
 	FeedPostCreateType,
-	type FeedPostSchemaType
+	FeedPostSchemaType
 } from '../validators/feedValidation';
 
 const FeedForm = ({
@@ -14,34 +14,66 @@ const FeedForm = ({
 }: {
 	currentFeed: FeedPostSchemaType | undefined;
 	onSubmit: SubmitHandler<FeedPostSchemaType>;
-}) => (
-	<Form
-		schema={FeedPostCreateSchema}
-		onSubmit={onSubmit}
-		defaultValues={currentFeed}
-		className="flex w-11 flex-col"
-		fields={{
-			title: {
-				label: 'Title',
-				type: 'text'
-			},
-			content: {
-				label: 'Content',
-				type: 'textarea'
-			},
-			imagePath: {
-				label: 'Image Path',
-				type: 'text'
-			},
-			createdAt: {
-				label: 'Created At',
-				columns: 2
-			},
-			submit: {
-				children: 'Save Feed'
-			}
-		}}
-	/>
-);
+}) => {
+	const { register, handleSubmit } = useForm<FeedPostSchemaType>();
+	return (
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="flex flex-col items-center space-y-4"
+		>
+			<label htmlFor="title" className="text-sm font-semibold">
+				Title:
+			</label>
+			<input
+				defaultValue={currentFeed?.title}
+				type="text"
+				id="title"
+				className="input input-bordered w-full max-w-xs"
+				{...register('title', { required: true, maxLength: 80 })}
+			/>
+
+			<label htmlFor="content" className="text-sm font-semibold">
+				Content:
+			</label>
+			<input
+				defaultValue={currentFeed?.content}
+				type="text"
+				id="content"
+				className="input input-bordered w-full max-w-xs"
+				{...register('content', { required: true, maxLength: 800 })}
+			/>
+
+			<label htmlFor="imagePath" className="text-sm font-semibold">
+				Image Path:
+			</label>
+			<input
+				type="text"
+				id="imagePath"
+				className="input input-bordered w-full max-w-xs"
+				{...register('imagePath', { required: true, maxLength: 80 })}
+			/>
+
+			<label htmlFor="createdAt" className="text-sm font-semibold">
+				Created At:
+			</label>
+			<input
+				type="date"
+				id="createdAt"
+				{...register('createdAt', {
+					required: true,
+					maxLength: 80,
+					valueAsDate: true
+				})}
+			/>
+
+			{/* <label htmlFor="file" className="text-sm font-semibold">
+				File:
+			</label>
+			<input type="file" id="file" {...register('file', { required: true })} /> */}
+
+			<input type="submit" className="rounded-sm bg-default-button p-3" />
+		</form>
+	);
+};
 
 export default FeedForm;

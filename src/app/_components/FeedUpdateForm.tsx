@@ -67,7 +67,6 @@ const FeedUpdateForm = ({
 	const deleteMutation = useDeleteFeed();
 
 	const onClick: SubmitHandler<FeedPostCreateType> = data => {
-		console.log(data);
 		deleteMutation.mutate(
 			{
 				id: currentFeed.id,
