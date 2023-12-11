@@ -5,8 +5,13 @@ import {
 	updateFeedPost
 } from '@/app/services/feedService';
 import { type FeedPost } from '@/app/types/feeds';
+import { getServerAuthSession } from '@/server/auth';
 
 export const POST = async (req: Request) => {
+	const status = await getServerAuthSession();
+	if (!status) {
+		return Response.json({ status: 401 });
+	}
 	const data = (await req.json()) as FeedPost;
 
 	try {
@@ -18,6 +23,10 @@ export const POST = async (req: Request) => {
 };
 
 export const PUT = async (req: Request) => {
+	const status = await getServerAuthSession();
+	if (!status) {
+		return Response.json({ status: 401 });
+	}
 	const data = (await req.json()) as Partial<FeedPost>;
 	const feedPostId = data.id;
 
