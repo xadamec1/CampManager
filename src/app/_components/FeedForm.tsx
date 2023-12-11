@@ -5,7 +5,7 @@ import { Form } from '@saas-ui/forms/zod';
 import FeedPostSchema, {
 	FeedPostCreateSchema,
 	FeedPostCreateType,
-	FeedPostSchemaType
+	type FeedPostSchemaType
 } from '../validators/feedValidation';
 
 const FeedForm = ({

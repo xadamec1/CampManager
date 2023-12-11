@@ -1,5 +1,3 @@
-import { getServerSession } from 'next-auth';
-
 import { db } from '@/server/db';
 import { type CampFormSchema, type CampWithAddress } from '@/app/types/camp';
 import { getServerAuthSession } from '@/server/auth';

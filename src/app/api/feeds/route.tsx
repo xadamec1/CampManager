@@ -47,7 +47,7 @@ export const PUT = async (req: Request) => {
 };
 
 export const DELETE = async (req: Request) => {
-	const data = req.body as Partial<FeedPost>;
+	const data = (await req.json()) as Partial<FeedPost>;
 	if (data.id) {
 		const deletedFeedPost = await deleteFeedPost(data.id);
 

@@ -51,8 +51,54 @@ const FeedUpdateForm = ({
 			}
 		);
 	};
+	const useDeleteFeed = () =>
+		useMutation({
+			mutationFn: (feed: FeedPostSchemaType) =>
+				fetch(`/api/feeds`, {
+					method: 'DELETE',
+					body: JSON.stringify(feed),
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
+				})
+		});
 
-	return <FeedForm currentFeed={currentFeed} onSubmit={onSubmit} />;
+	const deleteMutation = useDeleteFeed();
+
+	const onClick: SubmitHandler<FeedPostCreateType> = data => {
+		console.log(data);
+		deleteMutation.mutate(
+			{
+				id: currentFeed.id,
+				...data
+			},
+			{
+				onSuccess: response => {
+					console.log(data.title);
+					console.log(response);
+					router.push(`/admin/center/feeds`);
+				},
+				onError: error => {
+					console.log(error);
+					console.log(data);
+				}
+			}
+		);
+	};
+
+	return (
+		<>
+			<FeedForm currentFeed={currentFeed} onSubmit={onSubmit} />
+			<button
+				className="bg-default-button"
+				onClick={() => onClick(currentFeed)}
+			>
+				{' '}
+				Delete{' '}
+			</button>
+		</>
+	);
 };
 
 export default FeedUpdateForm;
