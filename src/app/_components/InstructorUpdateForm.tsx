@@ -2,9 +2,9 @@
 import React from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler } from 'react-hook-form';
 
-import { Instructor, type InstructorFormSchema } from '../types/camp';
+import { type Instructor, type InstructorFormSchema } from '../types/camp';
 
 import InstructorForm from './InstructorForm';
 
@@ -28,7 +28,21 @@ const InstructorUpdateForm = ({
 				})
 		});
 
+	const useDeleteInstructor = () =>
+		useMutation({
+			mutationFn: (instructor: InstructorFormSchema) =>
+				fetch(`/api/instructor`, {
+					method: 'DELETE',
+					body: JSON.stringify(instructor),
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
+				})
+		});
+
 	const { mutate } = useEditInstructor();
+	const deleteMutation = useDeleteInstructor();
 
 	const onSubmit: SubmitHandler<InstructorFormSchema> = data => {
 		mutate(
@@ -51,8 +65,40 @@ const InstructorUpdateForm = ({
 		);
 	};
 
+	const onClick: SubmitHandler<InstructorFormSchema> = data => {
+		deleteMutation.mutate(
+			{
+				id: currentInstructor.id,
+				...data
+			},
+			{
+				onSuccess: response => {
+					console.log(data.name);
+					console.log(response);
+					router.push(`/admin/center/instructors`);
+				},
+				onError: error => {
+					console.log(error);
+					console.log(data);
+				}
+			}
+		);
+	};
+
 	return (
-		<InstructorForm currentInstructor={currentInstructor} onSubmit={onSubmit} />
+		<>
+			<InstructorForm
+				currentInstructor={currentInstructor}
+				onSubmit={onSubmit}
+			/>
+			<button
+				className="rounded bg-default-button"
+				onClick={() => onClick(currentInstructor)}
+			>
+				{' '}
+				Delete{' '}
+			</button>
+		</>
 	);
 };
 

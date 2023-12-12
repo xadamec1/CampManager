@@ -8,6 +8,7 @@ import LoadingComponent from './Loading';
 
 const FeedList = async () => {
 	const feedPosts = await db.feedPost.findMany();
+
 	console.log(feedPosts[0]);
 	return (
 		<div className="overflow-x-auto">
@@ -40,6 +41,7 @@ const FeedList = async () => {
 								<td>{post.content}</td>
 								<td>{post.imagePath ?? 'N/A'}</td>
 								<td>{post.createdAt.toLocaleString()}</td>
+
 								<td className="px-6 text-right">
 									<Link
 										href={`./feeds/${post.id}/edit`}

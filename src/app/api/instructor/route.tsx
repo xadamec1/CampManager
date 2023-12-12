@@ -1,6 +1,7 @@
 import { db } from '@/server/db';
-
-import { InstructorFormSchemaType } from '@/app/types/instructor';
+import { type Instructor } from '@/app/types/camp';
+import { deleteInstructor } from '@/app/services/instructorService';
+import { type InstructorFormSchemaType } from '@/app/types/instructor';
 
 export const GET = async (_req: Request) => {
 	try {
@@ -38,5 +39,20 @@ export const POST = async (req: Request) => {
 		return Response.json(newInstructor);
 	} catch (error) {
 		return Response.json({ error: 'Internal Server Error' });
+	}
+};
+
+export const DELETE = async (req: Request) => {
+	const data = (await req.json()) as Partial<Instructor>;
+	if (data.id) {
+		const deleted = await deleteInstructor(data.id);
+
+		if (deleted) {
+			return Response.json(deleted);
+		} else {
+			return Response.error();
+		}
+	} else {
+		return Response.error();
 	}
 };
