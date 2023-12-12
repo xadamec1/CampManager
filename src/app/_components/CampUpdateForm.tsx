@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { type CampFormSchema, type CampWithAddress } from '../types/camp';
+import { type CampSchemaType } from '../validators/campValidation';
 
 import CampForm from './CampForm';
 
@@ -24,7 +25,21 @@ const CampUpdateForm = ({
 					}
 				})
 		});
+
+	const useDeleteCamp = () =>
+		useMutation({
+			mutationFn: (_camp: CampSchemaType) =>
+				fetch(`/api/campById/${currentCamp.id}`, {
+					method: 'DELETE',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
+				})
+		});
+
 	const { mutate } = useEditCamp();
+	const deleteMutation = useDeleteCamp();
 	const onSubmit: SubmitHandler<CampFormSchema> = data => {
 		mutate(
 			{
@@ -46,6 +61,35 @@ const CampUpdateForm = ({
 			}
 		);
 	};
-	return <CampForm currentCamp={currentCamp} onSubmit={onSubmit} />;
+
+	const onClick: SubmitHandler<CampSchemaType> = data => {
+		deleteMutation.mutate(
+			{
+				...data
+			},
+			{
+				onSuccess: response => {
+					console.log(data.name);
+					console.log(response);
+					router.push(`./`);
+				},
+				onError: error => {
+					console.log(error);
+					console.log(data);
+				}
+			}
+		);
+	};
+
+	return (
+		<CampForm currentCamp={currentCamp} onSubmit={onSubmit}>
+			<button
+				className="rounded bg-default-button"
+				onClick={() => onClick(currentCamp)}
+			>
+				Delete
+			</button>
+		</CampForm>
+	);
 };
 export default CampUpdateForm;

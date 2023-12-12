@@ -12,6 +12,7 @@ import {
 	type InstructorSchema,
 	type instructorFormSchema
 } from '../validators/instructor';
+import { CampSchemaType } from '../validators/campValidation';
 
 export type CampFormSchema = z.infer<typeof campFormSchema>;
 export type Child = z.infer<typeof childSchema>;
@@ -33,7 +34,16 @@ const includeAddressAndRegistrations =
 		}
 	});
 
+const registrationSchema = Prisma.validator<Prisma.RegistrationDefaultArgs>()(
+	{}
+);
+
+// export type CampType = z.infer<CampSchemaType>
+
 export type CampWithAddress = Prisma.CampGetPayload<typeof includeAddress>;
 export type CampWithAddressAndRegistrations = Prisma.CampGetPayload<
 	typeof includeAddressAndRegistrations
+>;
+export type RegistrationType = Prisma.RegistrationGetPayload<
+	typeof registrationSchema
 >;

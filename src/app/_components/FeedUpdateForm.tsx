@@ -87,16 +87,14 @@ const FeedUpdateForm = ({
 	};
 
 	return (
-		<>
-			<FeedForm currentFeed={currentFeed} onSubmit={onSubmit} />
+		<FeedForm currentFeed={currentFeed} onSubmit={onSubmit}>
 			<button
 				className="bg-default-button"
 				onClick={() => onClick(currentFeed)}
 			>
-				{' '}
-				Delete{' '}
+				Delete
 			</button>
-		</>
+		</FeedForm>
 	);
 };
 

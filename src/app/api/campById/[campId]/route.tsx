@@ -15,3 +15,14 @@ export async function GET(
 		return Response.json({ error: 'Internal Server Error' });
 	}
 }
+
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+export async function DELETE(
+	_request: Request,
+	{ params }: { params: { campId: string } }
+) {
+	const result = await db.camp.delete({
+		where: { id: +params.campId }
+	});
+	return Response.json(result);
+}
