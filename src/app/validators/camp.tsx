@@ -28,3 +28,12 @@ export const addressSchema = z.object({
 export const campFormSchema = campSchema
 	.omit({ id: true, addressID: true })
 	.extend({ address: addressSchema.omit({ id: true }) });
+
+export const RegistrationTypeSchema = z.object({
+	id: z.number().int(),
+	campId: z.number().int(),
+	childId: z.number().int(),
+	parentId: z.number().int(),
+	accepted: z.boolean(),
+	paid: z.boolean()
+});

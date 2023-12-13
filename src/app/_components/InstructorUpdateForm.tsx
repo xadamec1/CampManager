@@ -86,19 +86,14 @@ const InstructorUpdateForm = ({
 	};
 
 	return (
-		<>
-			<InstructorForm
-				currentInstructor={currentInstructor}
-				onSubmit={onSubmit}
-			/>
+		<InstructorForm currentInstructor={currentInstructor} onSubmit={onSubmit}>
 			<button
 				className="rounded bg-default-button"
 				onClick={() => onClick(currentInstructor)}
 			>
-				{' '}
-				Delete{' '}
+				Delete
 			</button>
-		</>
+		</InstructorForm>
 	);
 };
 

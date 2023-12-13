@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 import CampDetails from '@/app/_components/CampDetails';
 import { db } from '@/server/db';
+import { Suspense } from 'react';
+import LoadingComponent from '@/app/_components/Loading';
 
 type CampProps = {
 	params: {
@@ -24,7 +26,9 @@ const CampInfo = async ({ params }: CampProps) => {
 			<Link href={`./${camp.id}/edit`} className="font-bold hover:underline">
 				Edit
 			</Link>
-			<CampDetails camp={camp} />
+			<Suspense fallback={<LoadingComponent />}>
+				<CampDetails camp={camp} />
+			</Suspense>
 		</div>
 	);
 };
