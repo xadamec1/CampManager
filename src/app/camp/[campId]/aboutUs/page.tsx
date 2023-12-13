@@ -3,8 +3,8 @@
 import React from 'react';
 import { type Metadata } from 'next';
 
-import { getInstructors } from '../services/instructorService';
-import InstructorDetail from '../_components/InstructorDetail';
+import { getInstructors } from '@/app/services/instructorService';
+import InstructorDetail from '@/app/_components/InstructorDetail';
 
 export const metadata: Metadata = {
 	title: 'Kepa camp/aboutUs',
@@ -16,11 +16,9 @@ const AboutUs = async () => {
 	return (
 		<div>
 			<section className="container mx-auto p-8">
-				<h1 className="mb-6 text-3xl font-semibold">O nás</h1>
+				<h1 className="mb-6 text-3xl font-semibold">Our team</h1>
 
-				<p className="mb-4">Vítejte v Kepa - Příměstské Tábory.</p>
-
-				<h2 className="mb-4 text-2xl font-semibold">Organizátoři tábora</h2>
+				<h2 className="mb-4 text-2xl font-semibold">Organizator of the camp</h2>
 				{instructors.map(x => (
 					<InstructorDetail
 						key={x.id}
