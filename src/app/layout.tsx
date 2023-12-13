@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
 	<html lang="en">
 		<body
-			className={`${inter.className} bg-default-background text-default-text`}
+			className={`${inter.className} min-h-full bg-default-background text-default-text`}
 		>
 			<main className=" ">
 				<Providers>{children}</Providers>
