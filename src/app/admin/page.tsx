@@ -25,7 +25,11 @@ const LoginStatus = () => {
 			</div>
 		);
 	}
-	const admins = ['petr.adamec@skaut.cz', '12marting02@gmail.com'];
+	const admins = [
+		'petr.adamec@skaut.cz',
+		'12marting02@gmail.com',
+		'andrej.cermak1999@gmail.com'
+	];
 
 	if (admins.includes(data?.user.email as string)) {
 		redirect('/admin/center');
