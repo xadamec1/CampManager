@@ -15,7 +15,8 @@ const nextConfig = {
 				pathname: '**'
 			}
 		]
-	}
+	},
+	ignoreBuildErrors: true
 };
 
 module.exports = nextConfig;

@@ -61,4 +61,4 @@ export const DELETE = async (req: Request) => {
 	}
 };
 
-export const GET = async () => getFeedPosts();
+export const GET = async () => Response.json(getFeedPosts());
