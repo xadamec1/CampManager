@@ -132,14 +132,38 @@ const main = async () => {
 		}
 	});
 
-
 	await prisma.instructor.create({
 		data: {
 			name: 'John Doe',
 			email: 'john.doe@example.com',
-			phoneNumber: '+1234567890'		}
-	})
+			phoneNumber: '+1234567890'
+		}
+	});
+	await prisma.galleryPhoto.create({
+		data: {
+			campId: camp1.id,
+			src: 'https://drive.google.com/uc?export=view&id=1G7tu-XgZ1xwNi1yjFEyzE_-d2pJPt4w6'
+		}
+	});
+	await prisma.galleryPhoto.create({
+		data: {
+			campId: camp1.id,
+			src: 'https://drive.google.com/uc?export=view&id=10Bo5bhp51eLBkKzaTppFSk3V4ft1A1RY'
+		}
+	});
+	await prisma.galleryPhoto.create({
+		data: {
+			campId: camp1.id,
+			src: 'https://drive.google.com/uc?export=view&id=1PnNtxb3hbGOwhl82KhGVKij18v7LGjJm'
+		}
+	});
 
+	await prisma.galleryPhoto.create({
+		data: {
+			campId: camp1.id,
+			src: 'https://drive.google.com/uc?export=view&id=1Y4xbVEXRv1MeHyZdGJ377qy1C-rXMODG'
+		}
+	});
 	console.log('Seed data inserted successfully');
 };
 

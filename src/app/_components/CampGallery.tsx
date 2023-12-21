@@ -12,7 +12,7 @@ const Gallery = async ({
 		| undefined;
 }) => (
 	<div>
-		<div>My Google Drive Images</div>
+		<div>Gallery</div>
 		{photoLinks === undefined ? (
 			'No photos found'
 		) : (

@@ -25,13 +25,19 @@ const LoginStatus = () => {
 			</div>
 		);
 	}
-	const admins = ['petr.adamec@skaut.cz', '12marting02@gmail.com'];
+	// Below is simple whitelist, which make administration centre accesible only for admin
+	// We commented this and make administration centre for everyone, after discusion on lecture with Maros, Dalibor and Adam
+	// const admins = [
+	// 	'petr.adamec@skaut.cz',
+	// 	'12marting02@gmail.com',
+	// 	'andrej.cermak.1999@gmail.com'
+	// ];
 
-	if (admins.includes(data?.user.email as string)) {
-		redirect('/admin/center');
-	}
-	signOut();
-	redirect('/');
+	// if (admins.includes(data?.user.email as string)) {
+	// 	redirect('/admin/center');
+	// }
+	// signOut();
+	// redirect('/');
 };
 
 export default LoginStatus;
