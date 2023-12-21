@@ -25,6 +25,7 @@ const LoginStatus = () => {
 			</div>
 		);
 	}
+	redirect('/admin/center');
 	// Below is simple whitelist, which make administration centre accesible only for admin
 	// We commented this and make administration centre for everyone, after discusion on lecture with Maros, Dalibor and Adam
 	// const admins = [
